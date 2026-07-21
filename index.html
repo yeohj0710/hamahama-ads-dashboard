@@ -238,27 +238,46 @@
 
   <!-- ================= VIEW 2 ================= -->
   <div class="view" id="view2">
-    <div class="note">2차는 <b>7/20 시작, 집행 1일차</b>입니다 (캠페인당 ₩2~3천 소진). 표본이 작아 순위가 아직 흔들릴 수 있어요. 연령 13~65+ · 성과 목표 링크 클릭 · 연령별 분석은 데이터가 쌓이면 추가 예정.</div>
+    <div class="note">2차는 <b>7/20 시작, 7/21 오전까지 집행분</b>입니다 (총 ₩77,849 소진). 연령 13~65+ · 성과 목표 링크 클릭. 표본이 아직 작아 순위가 흔들릴 수 있고, 특히 연령별 수치는 방향성 참고용입니다. 차트의 45+는 45-54·55-64·65+ 합산.</div>
 
     <div class="kpis" id="kpis2"></div>
 
     <div class="card controls">
       <div>
-        <h2>지표 선택</h2>
-        <p class="sub">2차 캠페인(001~015) 기준</p>
+        <h2>지표 · 연령 필터</h2>
+        <p class="sub">2차 캠페인(001~015) 기준 · <b>13-17 포함</b></p>
       </div>
       <div class="seg" id="metricSeg2"></div>
+      <div class="chips" id="ageChips2"></div>
     </div>
 
     <div class="card">
       <h2 id="rankTitle2">소재 랭킹 — 2차</h2>
       <p class="sub" id="rankSub2"></p>
       <div class="ranking" id="ranking2"></div>
+      <div class="legend" id="ageLegend2"></div>
+    </div>
+
+    <div class="card">
+      <h2>소재 × 연령 히트맵 — 2차</h2>
+      <p class="sub">링크 클릭 수 · 진할수록 많음 · 셀을 탭하면 CPC/노출 표시</p>
+      <div class="hm-scroll"><div class="hm" id="heatmap2"></div></div>
+    </div>
+
+    <div class="card">
+      <h2>핵심 인사이트 — 2차 (13-17 첫 데이터)</h2>
+      <p class="sub">7/20~7/21 오전 · 표본 작음 주의</p>
+      <div class="insights">
+        <div class="ins"><span class="tag good">10대 실증</span><div>13-17에 <b>노출 2,952회 · 클릭 12회</b>가 실제로 찍혔습니다. 구버전 수동 캠페인 전환이 목적대로 작동한다는 최종 확인.</div></div>
+        <div class="ins"><span class="tag info">10대 노출 쏠림</span><div>Meta가 10대에게 노출을 몰아준 소재는 <b>2 아침형(760회)</b> · <b>8 여름방학(568회)</b> · <b>1 릴스 10시간(320회)</b>. 반면 11 CPA·LEET·행시는 10대 노출이 6회뿐 — 알고리즘이 소재별로 연령을 알아서 가르는 중.</div></div>
+        <div class="ins"><span class="tag good">10대 클릭</span><div>10대 클릭은 <b>8 여름방학(4회)</b> · <b>1 릴스 10시간(3회)</b> · <b>12 수능 반수(2회)</b>에서 발생. 1차에서 최하위였던 1·8이 10대에서 첫 반응을 보이는 게 포인트 — 표본은 작지만 "10대 겨냥 소재" 가설 방향과 일치.</div></div>
+        <div class="ins"><span class="tag bad">주의</span><div><b>2 아침형 vs 저녁형</b>은 10대 노출을 가장 많이 받고도 클릭 1회, 전체 CPC ₩662로 2차 꼴찌. 노출만 먹고 반응이 없는 상태.</div></div>
+      </div>
     </div>
 
     <div class="card">
       <h2>2차 원데이터</h2>
-      <p class="sub">CPC 낮은 순 · 좌우로 스크롤</p>
+      <p class="sub">CPC 낮은 순 · 우측은 연령별 클릭 · 좌우로 스크롤</p>
       <div class="tbl-scroll" id="tableWrap2"></div>
     </div>
   </div>
@@ -281,21 +300,21 @@
       <h2>핵심 인사이트 — 비교</h2>
       <p class="sub">1차(성인 18+, 랜딩 조회) vs 2차(13세+, 링크 클릭)</p>
       <div class="insights">
-        <div class="ins"><span class="tag good">재현</span><div>비용 효율 <b>상위 4개가 두 차수에서 완전히 동일</b> — 11 → 7 → 10 → 5. 소재 경쟁력이 연령 풀을 13세+로 넓혀도 유지된다는 강한 신호.</div></div>
-        <div class="ins"><span class="tag good">급상승</span><div><b>4 의대생 말풍선</b>이 11위 → 5위(CPC ₩169). 13세+ 풀에서 반응이 확 좋아진 케이스 — 며칠 더 지켜볼 관찰 대상 1순위.</div></div>
-        <div class="ins"><span class="tag bad">하락</span><div><b>3 엉덩이 싸움</b> 5위 → 11위, <b>8 여름방학</b> 12위 → 14위. 성인(중장년) 반응으로 버티던 소재들이 확장 풀에서 밀리는 모양새.</div></div>
-        <div class="ins"><span class="tag bad">확정 꼴찌</span><div><b>9 갓생러</b>는 1차 ₩507, 2차 ₩507로 두 번 다 최하위. 표본이 더 쌓여도 반전 가능성이 낮아 보이는 폐기 1순위.</div></div>
+        <div class="ins"><span class="tag good">재현</span><div>비용 효율 <b>상위 4개 구성이 두 차수 동일</b> — {11, 7, 10, 5}. 순서만 재편됐습니다: 1차 11→7→10→5, 2차 <b>7→10→5→11</b>. 11이 4위로 내려온 건 13세+ 풀에서 CPC가 오른 탓이지만 여전히 상위권.</div></div>
+        <div class="ins"><span class="tag good">상승</span><div><b>3 엉덩이 싸움</b>(5위 유지→5위), <b>4 의대생 말풍선</b>(11위→7위) — 확장 풀에서 순위를 지키거나 끌어올린 소재들.</div></div>
+        <div class="ins"><span class="tag bad">급락</span><div><b>2 아침형 vs 저녁형</b> 10위 → <b>15위(₩662)</b>. 10대 노출을 가장 많이 받고도 클릭이 안 나온 게 원인. 하루 더 보고 안 살아나면 오프 후보.</div></div>
+        <div class="ins"><span class="tag bad">확정 꼴찌권</span><div><b>9 갓생러</b> 1차 15위(₩507) → 2차 14위(₩494). 두 차수 연속 바닥 — 폐기 1순위는 변함없음.</div></div>
         <div class="ins"><span class="tag info">주의</span><div>1차와 2차는 <b>지표가 다릅니다</b> — 1차는 랜딩 페이지 조회당 비용, 2차는 링크 클릭당 비용(클릭 ⊃ 랜딩 도착). 절대값 비교 대신 <b>차수 내 순위</b>와 <b>CPM</b>으로 비교하세요.</div></div>
-        <div class="ins"><span class="tag info">10대</span><div>선행 테스트에서 13-17 노출 실증 완료. 랜딩 픽셀(StoreClick)이 이번 주부터 붙었으므로, 며칠 뒤엔 "클릭 → 앱스토어 이동"까지 소재별 비교 가능.</div></div>
+        <div class="ins"><span class="tag info">다음</span><div>랜딩 픽셀(StoreClick)이 이번 주부터 수집 중 — 며칠 뒤엔 "클릭 → 앱스토어 이동" 전환율까지 소재별로 붙여서 판단 가능.</div></div>
       </div>
     </div>
 
-    <p class="foot">순위 변동 폭이 큰 소재(4 ▲6, 3 ▼6)는 연령 풀 차이 때문일 수도, 1일차 소음일 수도 있습니다. 2~3일 치가 쌓인 뒤의 순위를 기준으로 판단 권장.</p>
+    <p class="foot">2차는 아직 표본이 작습니다 (캠페인당 ₩4~11천). 순위 변동이 큰 소재는 2~3일 치가 쌓인 뒤의 순위로 최종 판단 권장.</p>
   </div>
 
   <p class="foot">
-    데이터: Meta 광고 관리자 내보내기 · 1차 = 2026.7.17~7.20 (성인 18+ · 랜딩 페이지 조회 최적화), 2차 = 2026.7.20~ (13~65+ · 링크 클릭 최적화).
-    1차 차트의 55+는 55-64와 65+ 합산. 도달 합산치는 캠페인 고유 도달과 다를 수 있음.
+    데이터: Meta 광고 관리자 내보내기 · 1차 = 2026.7.17~7.20 (성인 18+ · 랜딩 페이지 조회 최적화), 2차 = 2026.7.20~7.21 오전 (13~65+ · 링크 클릭 최적화).
+    1차 차트의 55+는 55-64와 65+ 합산, 2차 차트의 45+는 45-54·55-64·65+ 합산. 도달 합산치는 캠페인 고유 도달과 다를 수 있음.
     광고차단 사용자 등으로 소폭 과소집계 가능 — 소재 간 상대 비교 용도로 권장.
   </p>
 </div>
@@ -343,15 +362,28 @@
     [14,5,0,108,18,16],[1,5,0,345,44,41],[15,5,0,200,34,31]
   ];
 
-  // ---- Phase 2 (7/20~, 13-65+, link clicks): [campaign, clicks, spend, imp, reach]
-  var P2 = [
-    [1,5,2034,508,500],[2,7,2457,573,553],[3,6,1934,455,455],[4,15,2533,602,592],
-    [5,22,3024,752,740],[6,8,2299,460,459],[7,31,3085,730,721],[8,5,2439,602,599],
-    [9,4,2026,415,385],[10,24,3054,528,515],[11,40,3449,873,849],[12,10,2313,600,591],
-    [13,9,2082,557,535],[14,9,2797,467,463],[15,9,2438,791,791]
+  // ---- Phase 2 (7/20~7/21, 13-65+, link clicks): [campaign, ageIdx, clicks, spend, imp, reach]
+  // ageIdx: 0=13-17 1=18-24 2=25-34 3=35-44 4=45+ (45-54 + 55-64 + 65+)
+  var P2ROWS = [
+    [1,0,3,445,320,298],[1,1,4,1003,252,247],[1,2,0,1042,173,166],[1,3,3,887,112,108],[1,4,6,1104,146,141],
+    [2,0,1,1928,760,668],[2,1,2,1207,345,337],[2,2,1,1000,198,194],[2,3,1,591,89,88],[2,4,3,567,103,99],
+    [3,0,0,162,136,129],[3,1,1,631,161,156],[3,2,7,1305,284,271],[3,3,9,1368,181,173],[3,4,7,962,138,126],
+    [4,0,0,99,80,75],[4,1,11,1884,615,587],[4,2,3,1348,333,308],[4,3,4,600,105,102],[4,4,7,1173,171,170],
+    [5,0,0,275,162,160],[5,1,25,2805,716,683],[5,2,13,2081,436,418],[5,3,1,416,79,78],[5,4,1,275,39,39],
+    [6,0,1,79,66,63],[6,1,9,2183,514,486],[6,2,10,1590,295,295],[6,3,0,628,82,81],[6,4,2,381,57,54],
+    [7,0,0,44,45,44],[7,1,19,1889,504,469],[7,2,34,2943,667,667],[7,3,9,648,127,124],[7,4,1,268,41,39],
+    [8,0,4,1083,568,531],[8,1,2,1299,359,357],[8,2,1,543,127,126],[8,3,2,459,62,61],[8,4,5,1101,128,121],
+    [9,0,0,228,228,181],[9,1,3,1432,240,225],[9,2,3,1378,167,160],[9,3,1,521,54,53],[9,4,1,396,45,44],
+    [10,0,1,145,119,116],[10,1,3,654,137,131],[10,2,12,1749,267,256],[10,3,16,1751,232,225],[10,4,6,1163,153,150],
+    [11,0,0,9,6,6],[11,1,30,5284,1668,1668],[11,2,27,3512,830,823],[11,3,9,1211,202,198],[11,4,7,1083,166,163],
+    [12,0,2,166,154,144],[12,1,12,2293,654,619],[12,2,6,1320,269,258],[12,3,0,317,45,44],[12,4,2,358,53,53],
+    [13,0,0,142,153,137],[13,1,5,901,275,270],[13,2,8,1384,269,259],[13,3,1,657,116,111],[13,4,3,648,86,81],
+    [14,0,0,124,117,109],[14,1,7,1578,303,294],[14,2,6,1976,268,258],[14,3,4,830,80,76],[14,4,0,646,58,58],
+    [15,0,0,46,38,35],[15,1,4,1728,581,563],[15,2,7,1443,425,418],[15,3,0,296,81,78],[15,4,0,184,43,43]
   ];
 
   var AGES = ["18-24", "25-34", "35-44", "45-54", "55+"];
+  var AGES2 = ["13-17", "18-24", "25-34", "35-44", "45+"];
   var CAMPS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
   var METRICS1 = [
     { key: "lpv",   label: "결과",  unit: "건", better: "desc" },
@@ -386,15 +418,30 @@
   }
   function cpa(o) { return o.lpv > 0 ? o.spend / o.lpv : null; }
 
-  var p2map = {};
-  P2.forEach(function (r) { p2map[r[0]] = { clicks: r[1], spend: r[2], imp: r[3], reach: r[4] }; });
+  var agg2 = {};
+  CAMPS.forEach(function (c) {
+    agg2[c] = [];
+    for (var a = 0; a < 5; a++) agg2[c].push({ clicks: 0, spend: 0, imp: 0, reach: 0 });
+  });
+  P2ROWS.forEach(function (r) {
+    var o = agg2[r[0]][r[1]];
+    o.clicks += r[2]; o.spend += r[3]; o.imp += r[4]; o.reach += r[5];
+  });
+  function totals2(c, ageIdx) {
+    if (ageIdx === -1) {
+      var t = { clicks: 0, spend: 0, imp: 0, reach: 0 };
+      agg2[c].forEach(function (o) { t.clicks += o.clicks; t.spend += o.spend; t.imp += o.imp; t.reach += o.reach; });
+      return t;
+    }
+    return agg2[c][ageIdx];
+  }
   function cpc(o) { return o.clicks > 0 ? o.spend / o.clicks : null; }
 
   var fmt = new Intl.NumberFormat("ko-KR");
   function won(v) { return v == null ? "—" : "₩" + fmt.format(Math.round(v)); }
   function num(v) { return fmt.format(v); }
 
-  var state = { view: "1", metric: "lpv", age: -1, sel: 11, metric2: "cpc" };
+  var state = { view: "1", metric: "lpv", age: -1, sel: 11, metric2: "cpc", age2: -1 };
   function ageColor(i) { return "var(--age-" + i + ")"; }
 
   // ---------- Phase segmented ----------
@@ -410,9 +457,14 @@
     };
   });
 
-  // ---------- View 1 ----------
   function kpiHtml(l, v, f) { return '<div class="kpi"><div class="k-label">' + l + '</div><div class="k-value">' + v + '</div><div class="k-foot">' + f + "</div></div>"; }
+  function dk(l, v) { return '<div class="dk"><div class="k-label">' + l + '</div><div class="k-value">' + v + "</div></div>"; }
+  function legendHtml(ages) {
+    return '<span class="li" style="color:var(--muted)">연령 색상:</span>' +
+      ages.map(function (a, i) { return '<span class="li"><span class="sw" style="background:' + ageColor(i) + '"></span>' + a + "</span>"; }).join("");
+  }
 
+  // ---------- View 1 ----------
   function renderKpis1() {
     var t = { lpv: 0, spend: 0, imp: 0 };
     CAMPS.forEach(function (c) { var o = totals(c, state.age); t.lpv += o.lpv; t.spend += o.spend; t.imp += o.imp; });
@@ -480,12 +532,8 @@
       row.onmouseleave = hideTip;
     });
 
-    document.getElementById("ageLegend").innerHTML =
-      '<span class="li" style="color:var(--muted)">연령 색상:</span>' +
-      AGES.map(function (a, i) { return '<span class="li"><span class="sw" style="background:' + ageColor(i) + '"></span>' + a + "</span>"; }).join("");
+    document.getElementById("ageLegend").innerHTML = legendHtml(AGES);
   }
-
-  function dk(l, v) { return '<div class="dk"><div class="k-label">' + l + '</div><div class="k-value">' + v + "</div></div>"; }
 
   function renderDetail() {
     var c = state.sel;
@@ -515,29 +563,38 @@
     var idx = 1 + Math.min(6, Math.floor(t * 7));
     return { bg: "var(--seq-" + idx + ")", light: idx >= 4 };
   }
-  function renderHeatmap() {
-    var order = CAMPS.slice().sort(function (a, b) { return totals(b, -1).lpv - totals(a, -1).lpv; });
+
+  function buildHeatmap(elId, ages, order, getCell, tipFn) {
     var max = 0;
-    order.forEach(function (c) { agg[c].forEach(function (o) { if (o.lpv > max) max = o.lpv; }); });
-    var html = "<div></div>" + AGES.map(function (a) { return '<div class="hc">' + a + "</div>"; }).join("");
+    order.forEach(function (c) {
+      for (var a = 0; a < 5; a++) { var v = getCell(c, a).v; if (v > max) max = v; }
+    });
+    var html = "<div></div>" + ages.map(function (a) { return '<div class="hc">' + a + "</div>"; }).join("");
     order.forEach(function (c) {
       html += '<div class="hr">' + c + " " + NAMES[c] + "</div>";
-      agg[c].forEach(function (o, i) {
-        var col = seqColor(o.lpv, max);
-        if (!col) html += '<div class="cell zero" tabindex="0" data-c="' + c + '" data-a="' + i + '">·</div>';
-        else html += '<div class="cell" tabindex="0" data-c="' + c + '" data-a="' + i + '" style="background:' + col.bg + ";color:" + (col.light ? "#ffffff" : "var(--ink)") + '">' + o.lpv + "</div>";
-      });
+      for (var a = 0; a < 5; a++) {
+        var v = getCell(c, a).v;
+        var col = seqColor(v, max);
+        if (!col) html += '<div class="cell zero" tabindex="0" data-c="' + c + '" data-a="' + a + '">·</div>';
+        else html += '<div class="cell" tabindex="0" data-c="' + c + '" data-a="' + a + '" style="background:' + col.bg + ";color:" + (col.light ? "#ffffff" : "var(--ink)") + '">' + v + "</div>";
+      }
     });
-    var el = document.getElementById("heatmap");
+    var el = document.getElementById(elId);
     el.innerHTML = html;
     el.querySelectorAll(".cell").forEach(function (cell) {
-      function show(ev) {
-        var c = parseInt(cell.dataset.c, 10), a = parseInt(cell.dataset.a, 10);
-        var o = agg[c][a];
-        tip("<b>" + c + " · " + NAMES[c] + "</b><br>" + AGES[a] + "세<br>조회 " + num(o.lpv) + "건 · CPA " + (cpa(o) ? won(cpa(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
-      }
+      function show(ev) { tipFn(parseInt(cell.dataset.c, 10), parseInt(cell.dataset.a, 10), ev); }
       cell.onmouseenter = show; cell.onmousemove = moveTip; cell.onmouseleave = hideTip; cell.onclick = show;
     });
+  }
+
+  function renderHeatmap1() {
+    var order = CAMPS.slice().sort(function (a, b) { return totals(b, -1).lpv - totals(a, -1).lpv; });
+    buildHeatmap("heatmap", AGES, order,
+      function (c, a) { return { v: agg[c][a].lpv }; },
+      function (c, a, ev) {
+        var o = agg[c][a];
+        tip("<b>" + c + " · " + NAMES[c] + "</b><br>" + AGES[a] + "세<br>조회 " + num(o.lpv) + "건 · CPA " + (cpa(o) ? won(cpa(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
+      });
   }
 
   function renderTable1() {
@@ -555,12 +612,13 @@
   // ---------- View 2 ----------
   function renderKpis2() {
     var t = { clicks: 0, spend: 0, imp: 0 };
-    CAMPS.forEach(function (c) { var o = p2map[c]; t.clicks += o.clicks; t.spend += o.spend; t.imp += o.imp; });
+    CAMPS.forEach(function (c) { var o = totals2(c, state.age2); t.clicks += o.clicks; t.spend += o.spend; t.imp += o.imp; });
+    var scope = state.age2 === -1 ? "13세+ 전체" : AGES2[state.age2];
     document.getElementById("kpis2").innerHTML =
-      kpiHtml("총 지출", won(t.spend), "13세+ · 1일차") +
-      kpiHtml("링크 클릭", num(t.clicks) + "회", "13세+ · 1일차") +
+      kpiHtml("총 지출", won(t.spend), scope + " · 7.20~21") +
+      kpiHtml("링크 클릭", num(t.clicks) + "회", scope) +
       kpiHtml("평균 CPC", t.clicks ? won(t.spend / t.clicks) : "—", "클릭당 비용") +
-      kpiHtml("노출", num(t.imp) + "회", "13세+ · 1일차");
+      kpiHtml("노출", num(t.imp) + "회", scope);
   }
 
   function renderControls2() {
@@ -569,12 +627,20 @@
       return '<button data-m="' + m.key + '" class="' + (state.metric2 === m.key ? "on" : "") + '">' + m.label + "</button>";
     }).join("");
     seg.querySelectorAll("button").forEach(function (b) { b.onclick = function () { state.metric2 = b.dataset.m; renderView2(); }; });
+
+    var chips = document.getElementById("ageChips2");
+    var html = '<button class="chip' + (state.age2 === -1 ? " on" : "") + '" data-a="-1"><span class="dot"></span>전체</button>';
+    AGES2.forEach(function (a, i) {
+      html += '<button class="chip' + (state.age2 === i ? " on" : "") + '" data-a="' + i + '"><span class="dot" style="background:' + ageColor(i) + '"></span>' + a + "</button>";
+    });
+    chips.innerHTML = html;
+    chips.querySelectorAll(".chip").forEach(function (b) { b.onclick = function () { state.age2 = parseInt(b.dataset.a, 10); renderView2(); }; });
   }
 
   function renderRanking2() {
     var m = METRICS2.find(function (x) { return x.key === state.metric2; });
     var rows = CAMPS.map(function (c) {
-      var o = p2map[c];
+      var o = totals2(c, state.age2);
       var v = state.metric2 === "cpc" ? cpc(o) : o[state.metric2];
       return { c: c, o: o, v: v };
     });
@@ -586,9 +652,11 @@
     var max = 0;
     rows.forEach(function (r) { if (r.v != null && r.v > max) max = r.v; });
 
+    var scope = state.age2 === -1 ? "13세+ 전체" : AGES2[state.age2] + "세";
     document.getElementById("rankTitle2").textContent = "소재 랭킹 — " + m.label + " (2차)";
-    document.getElementById("rankSub2").textContent = "13세+ 기준, " + (m.better === "asc" ? "낮을수록 좋음 (막대 = 비용)" : "높을수록 좋음");
+    document.getElementById("rankSub2").textContent = scope + " 기준, " + (m.better === "asc" ? "낮을수록 좋음 (막대 = 비용)" : "높을수록 좋음");
 
+    var barColor = state.age2 === -1 ? "var(--accent)" : ageColor(state.age2);
     var html = "";
     rows.forEach(function (r) {
       var w = r.v == null || max === 0 ? 0 : (r.v / max) * 100;
@@ -596,7 +664,7 @@
       var sub = state.metric2 === "cpc" ? num(r.o.clicks) + "클릭" : (cpc(r.o) ? won(cpc(r.o)) + "/클릭" : "");
       html += '<div class="rrow" tabindex="0" data-c="' + r.c + '">' +
         '<div class="name">' + thumbHtml(r.c) + '<span class="no">' + r.c + '</span><span class="nm">' + NAMES[r.c] + "</span></div>" +
-        '<div class="track"><div class="bar" style="width:' + w.toFixed(1) + '%"></div></div>' +
+        '<div class="track"><div class="bar" style="width:' + w.toFixed(1) + "%;background:" + barColor + '"></div></div>' +
         '<div class="val">' + valTxt + "<small>" + sub + "</small></div></div>";
     });
     var el = document.getElementById("ranking2");
@@ -604,20 +672,35 @@
     el.querySelectorAll(".rrow").forEach(function (row) {
       var c = parseInt(row.dataset.c, 10);
       function show(ev) {
-        var o = p2map[c];
-        tip("<b>" + c + " · " + NAMES[c] + "</b><br>13세+ · 1일차<br>클릭 " + num(o.clicks) + "회 · CPC " + (cpc(o) ? won(cpc(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
+        var o = totals2(c, state.age2);
+        var scope2 = state.age2 === -1 ? "13세+ 전체" : AGES2[state.age2] + "세";
+        tip("<b>" + c + " · " + NAMES[c] + "</b><br>" + scope2 + "<br>클릭 " + num(o.clicks) + "회 · CPC " + (cpc(o) ? won(cpc(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
       }
       row.onmouseenter = show; row.onmousemove = moveTip; row.onmouseleave = hideTip; row.onclick = show;
     });
+
+    document.getElementById("ageLegend2").innerHTML = legendHtml(AGES2);
+  }
+
+  function renderHeatmap2() {
+    var order = CAMPS.slice().sort(function (a, b) { return totals2(b, -1).clicks - totals2(a, -1).clicks; });
+    buildHeatmap("heatmap2", AGES2, order,
+      function (c, a) { return { v: agg2[c][a].clicks }; },
+      function (c, a, ev) {
+        var o = agg2[c][a];
+        tip("<b>" + c + " · " + NAMES[c] + "</b><br>" + AGES2[a] + "세<br>클릭 " + num(o.clicks) + "회 · CPC " + (cpc(o) ? won(cpc(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
+      });
   }
 
   function renderTable2() {
-    var rows = CAMPS.map(function (c) { return { c: c, o: p2map[c] }; });
+    var rows = CAMPS.map(function (c) { return { c: c, o: totals2(c, -1) }; });
     rows.sort(function (a, b) { return (cpc(a.o) || 1e9) - (cpc(b.o) || 1e9); });
-    var html = "<table><thead><tr><th>소재</th><th>클릭</th><th>CPC</th><th>지출</th><th>노출</th><th>도달</th><th>CPM</th></tr></thead><tbody>";
+    var html = "<table><thead><tr><th>소재</th><th>클릭</th><th>CPC</th><th>지출</th><th>노출</th><th>CPM</th><th>13-17</th><th>18-24</th><th>25-34</th><th>35-44</th><th>45+</th></tr></thead><tbody>";
     rows.forEach(function (r, i) {
       var cpm = r.o.imp ? r.o.spend / r.o.imp * 1000 : null;
-      html += "<tr" + (i === 0 ? ' class="best"' : "") + "><td>" + r.c + " " + NAMES[r.c] + "</td><td>" + num(r.o.clicks) + "</td><td>" + won(cpc(r.o)) + "</td><td>" + won(r.o.spend) + "</td><td>" + num(r.o.imp) + "</td><td>" + num(r.o.reach) + "</td><td>" + won(cpm) + "</td></tr>";
+      html += "<tr" + (i === 0 ? ' class="best"' : "") + "><td>" + r.c + " " + NAMES[r.c] + "</td><td>" + num(r.o.clicks) + "</td><td>" + won(cpc(r.o)) + "</td><td>" + won(r.o.spend) + "</td><td>" + num(r.o.imp) + "</td><td>" + won(cpm) + "</td>";
+      agg2[r.c].forEach(function (o) { html += "<td>" + num(o.clicks) + "</td>"; });
+      html += "</tr>";
     });
     document.getElementById("tableWrap2").innerHTML = html + "</tbody></table>";
   }
@@ -627,7 +710,7 @@
     var t1 = { lpv: 0, spend: 0, imp: 0 };
     CAMPS.forEach(function (c) { var o = totals(c, -1); t1.lpv += o.lpv; t1.spend += o.spend; t1.imp += o.imp; });
     var t2 = { clicks: 0, spend: 0, imp: 0 };
-    CAMPS.forEach(function (c) { var o = p2map[c]; t2.clicks += o.clicks; t2.spend += o.spend; t2.imp += o.imp; });
+    CAMPS.forEach(function (c) { var o = totals2(c, -1); t2.clicks += o.clicks; t2.spend += o.spend; t2.imp += o.imp; });
     document.getElementById("kpis3").innerHTML =
       kpiHtml("총 지출 (1+2차)", won(t1.spend + t2.spend), "1차 " + won(t1.spend) + " · 2차 " + won(t2.spend)) +
       kpiHtml("총 노출", num(t1.imp + t2.imp) + "회", "1차 " + num(t1.imp) + " · 2차 " + num(t2.imp)) +
@@ -635,7 +718,7 @@
       kpiHtml("2차 링크 클릭", num(t2.clicks) + "회", "평균 CPC " + won(t2.spend / t2.clicks));
 
     var r1 = CAMPS.slice().sort(function (a, b) { return (cpa(totals(a, -1)) || 1e9) - (cpa(totals(b, -1)) || 1e9); });
-    var r2 = CAMPS.slice().sort(function (a, b) { return (cpc(p2map[a]) || 1e9) - (cpc(p2map[b]) || 1e9); });
+    var r2 = CAMPS.slice().sort(function (a, b) { return (cpc(totals2(a, -1)) || 1e9) - (cpc(totals2(b, -1)) || 1e9); });
     var rank1 = {}, rank2 = {};
     r1.forEach(function (c, i) { rank1[c] = i + 1; });
     r2.forEach(function (c, i) { rank2[c] = i + 1; });
@@ -643,17 +726,17 @@
     var maxCpa = 0, maxCpc = 0;
     CAMPS.forEach(function (c) {
       var a = cpa(totals(c, -1)); if (a && a > maxCpa) maxCpa = a;
-      var b = cpc(p2map[c]); if (b && b > maxCpc) maxCpc = b;
+      var b = cpc(totals2(c, -1)); if (b && b > maxCpc) maxCpc = b;
     });
 
     var html = "";
     r2.forEach(function (c) {
-      var a = cpa(totals(c, -1)), b = cpc(p2map[c]);
+      var a = cpa(totals(c, -1)), b = cpc(totals2(c, -1));
       var d = rank1[c] - rank2[c];
       var deltaCls = d > 0 ? "up" : d < 0 ? "down" : "same";
       var deltaTxt = d > 0 ? "▲" + d : d < 0 ? "▼" + (-d) : "–";
       var cpm1 = totals(c, -1).spend / totals(c, -1).imp * 1000;
-      var cpm2 = p2map[c].spend / p2map[c].imp * 1000;
+      var cpm2 = totals2(c, -1).spend / totals2(c, -1).imp * 1000;
       html += '<div class="crow">' +
         '<img src="' + imgSrc(c) + '" alt="' + NAMES[c] + '" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
         "<div>" +
@@ -697,9 +780,10 @@
   function renderView2() { renderKpis2(); renderControls2(); renderRanking2(); }
 
   renderView1();
-  renderHeatmap();
+  renderHeatmap1();
   renderTable1();
   renderView2();
+  renderHeatmap2();
   renderTable2();
   renderView3();
 })();
