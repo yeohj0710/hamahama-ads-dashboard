@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>하마하마 광고 대시보드</title>
-<meta name="description" content="하마하마 메타 광고 소재 15종 · 연령대별 성과 대시보드 (2026.7.17~7.20)">
+<meta name="description" content="하마하마 메타 광고 소재 15종 · 1차(성인 18+) × 2차(13세+) 성과 대시보드">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
 <style>
   :root {
     color-scheme: light;
@@ -17,6 +18,7 @@
     --border: rgba(16, 19, 26, 0.10);
     --accent: #2a78d6;
     --accent-soft: rgba(42, 120, 214, 0.10);
+    --p1bar: #86b6ef;
     --good: #006300;
     --bad: #c03636;
     --age-0: #86b6ef; --age-1: #5598e7; --age-2: #2a78d6; --age-3: #1c5cab; --age-4: #0d366b;
@@ -27,77 +29,34 @@
   @media (prefers-color-scheme: dark) {
     :root:where(:not([data-theme="light"])) {
       color-scheme: dark;
-      --bg: #0d0f12;
-      --surface: #17191d;
-      --ink: #f2f4f7;
-      --ink-2: #b7bdc6;
-      --muted: #7d838d;
-      --grid: #2a2d33;
-      --border: rgba(255, 255, 255, 0.10);
-      --accent: #3987e5;
-      --accent-soft: rgba(57, 135, 229, 0.16);
-      --good: #2eb82e;
-      --bad: #e66767;
+      --bg: #0d0f12; --surface: #17191d; --ink: #f2f4f7; --ink-2: #b7bdc6; --muted: #7d838d;
+      --grid: #2a2d33; --border: rgba(255,255,255,0.10);
+      --accent: #3987e5; --accent-soft: rgba(57,135,229,0.16); --p1bar: #9ec5f4;
+      --good: #2eb82e; --bad: #e66767;
       --age-0: #cde2fb; --age-1: #9ec5f4; --age-2: #6da7ec; --age-3: #3987e5; --age-4: #184f95;
       --seq-0: #1c2027; --seq-1: #14304f; --seq-2: #184f95; --seq-3: #256abf; --seq-4: #3987e5; --seq-5: #6da7ec; --seq-6: #9ec5f4; --seq-7: #cde2fb;
-      --tooltip-bg: #f2f4f7;
-      --tooltip-ink: #10131a;
+      --tooltip-bg: #f2f4f7; --tooltip-ink: #10131a;
     }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --bg: #0d0f12;
-    --surface: #17191d;
-    --ink: #f2f4f7;
-    --ink-2: #b7bdc6;
-    --muted: #7d838d;
-    --grid: #2a2d33;
-    --border: rgba(255, 255, 255, 0.10);
-    --accent: #3987e5;
-    --accent-soft: rgba(57, 135, 229, 0.16);
-    --good: #2eb82e;
-    --bad: #e66767;
-    --age-0: #cde2fb; --age-1: #9ec5f4; --age-2: #6da7ec; --age-3: #3987e5; --age-4: #184f95;
-    --seq-0: #1c2027; --seq-1: #14304f; --seq-2: #184f95; --seq-3: #256abf; --seq-4: #3987e5; --seq-5: #6da7ec; --seq-6: #9ec5f4; --seq-7: #cde2fb;
-    --tooltip-bg: #f2f4f7;
-    --tooltip-ink: #10131a;
-  }
-  :root[data-theme="light"] {
-    color-scheme: light;
-    --bg: #f4f6f9;
-    --surface: #fcfdfe;
-    --ink: #10131a;
-    --ink-2: #4b5563;
-    --muted: #8a919c;
-    --grid: #e2e6ec;
-    --border: rgba(16, 19, 26, 0.10);
-    --accent: #2a78d6;
-    --accent-soft: rgba(42, 120, 214, 0.10);
-    --good: #006300;
-    --bad: #c03636;
-    --age-0: #86b6ef; --age-1: #5598e7; --age-2: #2a78d6; --age-3: #1c5cab; --age-4: #0d366b;
-    --seq-0: #eef4fc; --seq-1: #cde2fb; --seq-2: #9ec5f4; --seq-3: #6da7ec; --seq-4: #3987e5; --seq-5: #256abf; --seq-6: #184f95; --seq-7: #0d366b;
-    --tooltip-bg: #10131a;
-    --tooltip-ink: #f5f7fa;
   }
 
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
+    margin: 0; background: var(--bg); color: var(--ink);
     font-family: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.55;
-    -webkit-text-size-adjust: 100%;
+    font-size: 15px; line-height: 1.55; -webkit-text-size-adjust: 100%;
   }
   .wrap { max-width: 780px; margin: 0 auto; padding: 20px 14px 72px; display: flex; flex-direction: column; gap: 14px; }
 
-  header.top { padding: 6px 4px 2px; }
+  header.top { padding: 6px 4px 0; }
   .eyebrow { font-size: 12px; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; }
-  h1 { font-size: 22px; margin: 2px 0 6px; letter-spacing: -0.01em; text-wrap: balance; }
+  h1 { font-size: 22px; margin: 2px 0 6px; letter-spacing: -0.01em; }
   .meta-line { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; color: var(--ink-2); }
   .meta-line span { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; }
+
+  .phase-seg { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 4px; gap: 3px; position: sticky; top: 8px; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .phase-seg button { flex: 1; border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: 13px; font-weight: 650; padding: 9px 4px; border-radius: 9px; cursor: pointer; min-height: 40px; }
+  .phase-seg button.on { background: var(--accent); color: #fff; }
+  .phase-seg button small { display: block; font-size: 10.5px; font-weight: 500; opacity: 0.8; line-height: 1.2; }
 
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
   .card h2 { font-size: 15px; margin: 0 0 2px; }
@@ -112,45 +71,38 @@
 
   .controls { display: flex; flex-direction: column; gap: 10px; }
   .seg { display: flex; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 2px; }
-  .seg button {
-    flex: 1; border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: 13px; font-weight: 600;
-    padding: 7px 4px; border-radius: 8px; cursor: pointer; min-height: 36px;
-  }
+  .seg button { flex: 1; border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: 13px; font-weight: 600; padding: 7px 4px; border-radius: 8px; cursor: pointer; min-height: 36px; }
   .seg button.on { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.10); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); background: var(--surface);
-    color: var(--ink-2); font: inherit; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 6px 12px;
-    cursor: pointer; min-height: 32px;
-  }
+  .chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--ink-2); font: inherit; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 6px 12px; cursor: pointer; min-height: 32px; }
   .chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; }
   .chip.on { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
 
+  .thumb { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; flex: none; background: var(--grid); }
+
   .ranking { display: flex; flex-direction: column; gap: 2px; }
-  .rrow {
-    display: grid; grid-template-columns: 148px 1fr 78px; align-items: center; gap: 10px;
-    padding: 6px 8px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;
-  }
+  .rrow { display: grid; grid-template-columns: 176px 1fr 78px; align-items: center; gap: 10px; padding: 5px 8px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
   .rrow:hover { background: var(--accent-soft); }
   .rrow.sel { border-color: var(--accent); background: var(--accent-soft); }
-  .rrow .name { font-size: 12.5px; color: var(--ink); display: flex; gap: 6px; align-items: baseline; min-width: 0; }
-  .rrow .name .no { color: var(--muted); font-weight: 700; font-size: 11.5px; flex: none; width: 16px; text-align: right; }
+  .rrow .name { font-size: 12.5px; color: var(--ink); display: flex; gap: 7px; align-items: center; min-width: 0; }
+  .rrow .name .no { color: var(--muted); font-weight: 700; font-size: 11px; flex: none; width: 15px; text-align: right; }
   .rrow .name .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
   .rrow .track { height: 14px; display: flex; align-items: center; }
   .rrow .bar { height: 12px; border-radius: 0 4px 4px 0; background: var(--accent); min-width: 2px; }
   .rrow .val { font-size: 12.5px; text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 650; }
   .rrow .val small { display: block; font-weight: 400; color: var(--muted); font-size: 10.5px; line-height: 1.2; }
-  @media (max-width: 480px) { .rrow { grid-template-columns: 118px 1fr 72px; } .rrow .name .nm { font-size: 12px; } }
+  @media (max-width: 480px) { .rrow { grid-template-columns: 148px 1fr 70px; } .rrow .name .nm { font-size: 11.5px; } }
 
   .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--grid); font-size: 12px; color: var(--ink-2); }
   .legend .li { display: inline-flex; align-items: center; gap: 5px; }
   .legend .sw { width: 10px; height: 10px; border-radius: 3px; }
 
-  .detail-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; }
+  .detail-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+  .detail-head img { width: 96px; height: 96px; border-radius: 10px; object-fit: cover; flex: none; border: 1px solid var(--border); }
+  .detail-kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; flex: 1; }
   .dk { background: var(--bg); border-radius: 10px; padding: 8px 10px; }
   .dk .k-label { font-size: 11px; color: var(--muted); }
   .dk .k-value { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  @media (max-width: 480px) { .detail-kpis { grid-template-columns: repeat(2, 1fr); } }
   .arow { display: grid; grid-template-columns: 56px 1fr 118px; align-items: center; gap: 10px; padding: 4px 0; }
   .arow .aname { font-size: 12px; color: var(--ink-2); font-weight: 600; }
   .arow .track { height: 14px; display: flex; align-items: center; }
@@ -162,10 +114,7 @@
   .hm { display: grid; grid-template-columns: 96px repeat(5, minmax(52px, 1fr)); gap: 2px; min-width: 420px; }
   .hm .hc { font-size: 11px; color: var(--muted); font-weight: 700; text-align: center; padding: 4px 0; }
   .hm .hr { font-size: 11.5px; color: var(--ink-2); font-weight: 600; display: flex; align-items: center; padding-right: 6px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-  .hm .cell {
-    height: 32px; border-radius: 5px; display: flex; align-items: center; justify-content: center;
-    font-size: 11.5px; font-variant-numeric: tabular-nums; font-weight: 650; cursor: pointer;
-  }
+  .hm .cell { height: 32px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; font-weight: 650; cursor: pointer; }
   .hm .cell.zero { color: var(--muted); background: var(--seq-0); font-weight: 400; }
 
   .insights { display: flex; flex-direction: column; gap: 10px; }
@@ -184,19 +133,33 @@
   td:first-child { font-weight: 600; }
   tr.best td { color: var(--good); }
 
+  .crow { display: grid; grid-template-columns: 48px 1fr; gap: 12px; padding: 12px 4px; border-bottom: 1px solid var(--grid); }
+  .crow:last-child { border-bottom: 0; }
+  .crow img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border); }
+  .crow .c-name { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .crow .rk { font-size: 11px; font-weight: 700; color: var(--ink-2); background: var(--bg); border-radius: 6px; padding: 1px 7px; }
+  .crow .delta { font-size: 11px; font-weight: 750; border-radius: 6px; padding: 1px 7px; }
+  .crow .delta.up { color: var(--good); background: color-mix(in srgb, var(--good) 12%, transparent); }
+  .crow .delta.down { color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+  .crow .delta.same { color: var(--muted); background: var(--bg); }
+  .cbar { display: grid; grid-template-columns: 64px 1fr 74px; align-items: center; gap: 8px; margin-top: 5px; }
+  .cbar .lbl { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .cbar .track { height: 12px; display: flex; align-items: center; }
+  .cbar .bar { height: 10px; border-radius: 0 4px 4px 0; min-width: 2px; }
+  .cbar .v { font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+  .crow .cpm { font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+  .note { font-size: 12.5px; color: var(--ink-2); background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; }
   .foot { font-size: 12px; color: var(--muted); line-height: 1.7; padding: 0 4px; }
 
-  #tooltip {
-    position: fixed; z-index: 50; pointer-events: none; display: none;
-    background: var(--tooltip-bg); color: var(--tooltip-ink); border-radius: 8px; padding: 8px 11px;
-    font-size: 12px; line-height: 1.5; max-width: 240px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-  }
+  #tooltip { position: fixed; z-index: 50; pointer-events: none; display: none; background: var(--tooltip-bg); color: var(--tooltip-ink); border-radius: 8px; padding: 8px 11px; font-size: 12px; line-height: 1.5; max-width: 240px; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
   #tooltip b { font-size: 12.5px; }
 
+  .view { display: none; flex-direction: column; gap: 14px; }
+  .view.on { display: flex; }
+
   button:focus-visible, .rrow:focus-visible, .cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-  @media (prefers-reduced-motion: no-preference) {
-    .rrow .bar, .arow .bar { transition: width 0.35s ease; }
-  }
+  @media (prefers-reduced-motion: no-preference) { .rrow .bar, .arow .bar, .cbar .bar { transition: width 0.35s ease; } }
 </style>
 </head>
 <body>
@@ -204,69 +167,136 @@
 <div class="wrap">
   <header class="top">
     <div class="eyebrow">HAMAHAMA · META ADS</div>
-    <h1>소재 15종 성과 대시보드</h1>
+    <h1>광고 성과 대시보드</h1>
     <div class="meta-line">
-      <span>집행 2026.7.17 ~ 7.20</span>
-      <span>일 예산 ₩10,000 × 15캠페인</span>
-      <span>성과 목표: 랜딩 페이지 조회</span>
-      <span>게재: 성인(18+)</span>
+      <span>1차 · 성인 18+ · 7.17~7.20 종료</span>
+      <span>2차 · 13세+ · 7.20~ 진행 중</span>
+      <span>소재 15종 × 일 ₩10,000</span>
     </div>
   </header>
 
-  <div class="kpis" id="kpis"></div>
+  <div class="phase-seg" id="phaseSeg">
+    <button data-v="1" class="on">1차 · 성인 18+<small>랜딩 조회 기준</small></button>
+    <button data-v="2">2차 · 13세+<small>링크 클릭 기준</small></button>
+    <button data-v="3">비교 · 합산<small>순위 재현성</small></button>
+  </div>
 
-  <div class="card controls">
-    <div>
-      <h2>지표 · 연령 필터</h2>
-      <p class="sub">지표를 고르고 연령대를 좁혀보세요. 아래 랭킹·수치가 모두 따라 바뀝니다.</p>
+  <!-- ================= VIEW 1 ================= -->
+  <div class="view on" id="view1">
+    <div class="kpis" id="kpis1"></div>
+
+    <div class="card controls">
+      <div>
+        <h2>지표 · 연령 필터</h2>
+        <p class="sub">지표를 고르고 연령대를 좁혀보세요. 아래 랭킹·수치가 모두 따라 바뀝니다.</p>
+      </div>
+      <div class="seg" id="metricSeg"></div>
+      <div class="chips" id="ageChips"></div>
     </div>
-    <div class="seg" id="metricSeg" role="tablist"></div>
-    <div class="chips" id="ageChips"></div>
-  </div>
 
-  <div class="card">
-    <h2 id="rankTitle">소재 랭킹</h2>
-    <p class="sub" id="rankSub"></p>
-    <div class="ranking" id="ranking"></div>
-    <div class="legend" id="ageLegend"></div>
-  </div>
+    <div class="card">
+      <h2 id="rankTitle">소재 랭킹</h2>
+      <p class="sub" id="rankSub"></p>
+      <div class="ranking" id="ranking"></div>
+      <div class="legend" id="ageLegend"></div>
+    </div>
 
-  <div class="card" id="detailCard">
-    <h2 id="detailTitle"></h2>
-    <p class="sub">랭킹에서 소재를 탭하면 이 영역이 바뀝니다 · 막대 = 랜딩 페이지 조회 수</p>
-    <div class="detail-kpis" id="detailKpis"></div>
-    <div id="detailAges"></div>
-  </div>
+    <div class="card" id="detailCard">
+      <h2 id="detailTitle"></h2>
+      <p class="sub">랭킹에서 소재를 탭하면 이 영역이 바뀝니다 · 막대 = 랜딩 페이지 조회 수</p>
+      <div class="detail-head">
+        <img id="detailImg" src="" alt="소재 이미지" onerror="this.style.display='none'">
+        <div class="detail-kpis" id="detailKpis"></div>
+      </div>
+      <div id="detailAges"></div>
+    </div>
 
-  <div class="card">
-    <h2>소재 × 연령 히트맵</h2>
-    <p class="sub">랜딩 페이지 조회 수 · 진할수록 많음 · 셀을 탭하면 CPA/지출 표시</p>
-    <div class="hm-scroll"><div class="hm" id="heatmap"></div></div>
-  </div>
+    <div class="card">
+      <h2>소재 × 연령 히트맵</h2>
+      <p class="sub">랜딩 페이지 조회 수 · 진할수록 많음 · 셀을 탭하면 CPA/지출 표시</p>
+      <div class="hm-scroll"><div class="hm" id="heatmap"></div></div>
+    </div>
 
-  <div class="card">
-    <h2>핵심 인사이트</h2>
-    <p class="sub">성인(18+) 게재 데이터 기준</p>
-    <div class="insights">
-      <div class="ins"><span class="tag good">1위</span><div><b>11 CPA·LEET·행시</b>가 종합 압승 — CPA <b>₩76</b>, 조회 274건. 전 연령대에서 1~2위를 놓치지 않은 유일한 소재.</div></div>
-      <div class="ins"><span class="tag good">젊은층</span><div><b>7 독서실 70만 원</b>(₩110)과 <b>5 타이머 12시간</b>(₩138)이 18-34를 견인. 특히 7은 25-34에서 99건(₩96)으로 해당 연령 최다.</div></div>
-      <div class="ins"><span class="tag good">중장년</span><div><b>10 공부 시작</b>(₩129)은 35-54 특화 — 45-54에서 54건(₩97)으로 압도. <b>8 여름방학</b>도 45-54에서만 반응(24건) → 학부모 각도 가설과 일치.</div></div>
-      <div class="ins"><span class="tag info">편중</span><div><b>12 수능 반수</b>는 조회의 95%가 18-34에 몰림 — 성인 중에서도 재수·반수 당사자 연령에만 닿는 전형적 타깃 편중형.</div></div>
-      <div class="ins"><span class="tag bad">최하위</span><div><b>9 갓생러</b>(₩507) · <b>1 릴스 10시간</b>(₩422) · <b>15 100명 공부 중</b>(₩420). 단, 1·15는 10대 겨냥 소재라 성인 풀 결과만으로 폐기하긴 이릅니다 — 13+ 신규 캠페인에서 재평가 필요.</div></div>
-      <div class="ins"><span class="tag info">10대</span><div>001 테스트 캠페인에서 <b>13-17 노출 27회</b> 확인 — 10대 게재 실증 완료. 신규 002~ 캠페인은 링크 클릭 기준이므로 이 대시보드의 CPA와 직접 비교하지 말고 <b>CPC로 비교</b>할 것.</div></div>
+    <div class="card">
+      <h2>핵심 인사이트 — 1차</h2>
+      <p class="sub">성인(18+) 게재 데이터 기준</p>
+      <div class="insights">
+        <div class="ins"><span class="tag good">1위</span><div><b>11 CPA·LEET·행시</b>가 종합 압승 — CPA <b>₩76</b>, 조회 274건. 전 연령대에서 1~2위를 놓치지 않은 유일한 소재.</div></div>
+        <div class="ins"><span class="tag good">젊은층</span><div><b>7 독서실 70만 원</b>(₩111)과 <b>5 타이머 12시간</b>(₩138)이 18-34를 견인. 특히 7은 25-34에서 99건(₩96)으로 해당 연령 최다.</div></div>
+        <div class="ins"><span class="tag good">중장년</span><div><b>10 공부 시작</b>(₩129)은 35-54 특화 — 45-54에서 54건(₩97)으로 압도. <b>8 여름방학</b>도 45-54에서만 반응(24건) → 학부모 각도 가설과 일치.</div></div>
+        <div class="ins"><span class="tag info">편중</span><div><b>12 수능 반수</b>는 조회의 95%가 18-34에 몰림 — 성인 중에서도 재수·반수 당사자 연령에만 닿는 전형적 타깃 편중형.</div></div>
+        <div class="ins"><span class="tag bad">최하위</span><div><b>9 갓생러</b>(₩507) · <b>1 릴스 10시간</b>(₩422) · <b>15 100명 공부 중</b>(₩420). 단, 1·15는 10대 겨냥 소재라 성인 풀 결과만으로 폐기하긴 이릅니다 — 2차에서 재평가.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>소재별 합계 (1차 원데이터)</h2>
+      <p class="sub">CPA 낮은 순 · 좌우로 스크롤</p>
+      <div class="tbl-scroll" id="tableWrap"></div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>소재별 합계 (원데이터)</h2>
-    <p class="sub">CPA 낮은 순 · 좌우로 스크롤</p>
-    <div class="tbl-scroll" id="tableWrap"></div>
+  <!-- ================= VIEW 2 ================= -->
+  <div class="view" id="view2">
+    <div class="note">2차는 <b>7/20 시작, 집행 1일차</b>입니다 (캠페인당 ₩2~3천 소진). 표본이 작아 순위가 아직 흔들릴 수 있어요. 연령 13~65+ · 성과 목표 링크 클릭 · 연령별 분석은 데이터가 쌓이면 추가 예정.</div>
+
+    <div class="kpis" id="kpis2"></div>
+
+    <div class="card controls">
+      <div>
+        <h2>지표 선택</h2>
+        <p class="sub">2차 캠페인(001~015) 기준</p>
+      </div>
+      <div class="seg" id="metricSeg2"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="rankTitle2">소재 랭킹 — 2차</h2>
+      <p class="sub" id="rankSub2"></p>
+      <div class="ranking" id="ranking2"></div>
+    </div>
+
+    <div class="card">
+      <h2>2차 원데이터</h2>
+      <p class="sub">CPC 낮은 순 · 좌우로 스크롤</p>
+      <div class="tbl-scroll" id="tableWrap2"></div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 3 ================= -->
+  <div class="view" id="view3">
+    <div class="kpis" id="kpis3"></div>
+
+    <div class="card">
+      <h2>소재별 1차 vs 2차</h2>
+      <p class="sub">2차 CPC 낮은 순 · 순위 배지 = 각 차수의 비용 효율 순위</p>
+      <div class="legend" style="margin: 0 0 4px; padding: 0 0 10px; border-top: 0; border-bottom: 1px solid var(--grid);">
+        <span class="li"><span class="sw" style="background:var(--p1bar)"></span>1차 CPA (랜딩 조회당)</span>
+        <span class="li"><span class="sw" style="background:var(--accent)"></span>2차 CPC (링크 클릭당)</span>
+      </div>
+      <div id="compare"></div>
+    </div>
+
+    <div class="card">
+      <h2>핵심 인사이트 — 비교</h2>
+      <p class="sub">1차(성인 18+, 랜딩 조회) vs 2차(13세+, 링크 클릭)</p>
+      <div class="insights">
+        <div class="ins"><span class="tag good">재현</span><div>비용 효율 <b>상위 4개가 두 차수에서 완전히 동일</b> — 11 → 7 → 10 → 5. 소재 경쟁력이 연령 풀을 13세+로 넓혀도 유지된다는 강한 신호.</div></div>
+        <div class="ins"><span class="tag good">급상승</span><div><b>4 의대생 말풍선</b>이 11위 → 5위(CPC ₩169). 13세+ 풀에서 반응이 확 좋아진 케이스 — 며칠 더 지켜볼 관찰 대상 1순위.</div></div>
+        <div class="ins"><span class="tag bad">하락</span><div><b>3 엉덩이 싸움</b> 5위 → 11위, <b>8 여름방학</b> 12위 → 14위. 성인(중장년) 반응으로 버티던 소재들이 확장 풀에서 밀리는 모양새.</div></div>
+        <div class="ins"><span class="tag bad">확정 꼴찌</span><div><b>9 갓생러</b>는 1차 ₩507, 2차 ₩507로 두 번 다 최하위. 표본이 더 쌓여도 반전 가능성이 낮아 보이는 폐기 1순위.</div></div>
+        <div class="ins"><span class="tag info">주의</span><div>1차와 2차는 <b>지표가 다릅니다</b> — 1차는 랜딩 페이지 조회당 비용, 2차는 링크 클릭당 비용(클릭 ⊃ 랜딩 도착). 절대값 비교 대신 <b>차수 내 순위</b>와 <b>CPM</b>으로 비교하세요.</div></div>
+        <div class="ins"><span class="tag info">10대</span><div>선행 테스트에서 13-17 노출 실증 완료. 랜딩 픽셀(StoreClick)이 이번 주부터 붙었으므로, 며칠 뒤엔 "클릭 → 앱스토어 이동"까지 소재별 비교 가능.</div></div>
+      </div>
+    </div>
+
+    <p class="foot">순위 변동 폭이 큰 소재(4 ▲6, 3 ▼6)는 연령 풀 차이 때문일 수도, 1일차 소음일 수도 있습니다. 2~3일 치가 쌓인 뒤의 순위를 기준으로 판단 권장.</p>
   </div>
 
   <p class="foot">
-    데이터: Meta 광고 관리자 내보내기 (연령 분석, 2026.7.17~7.20 = 실집행 전 기간) · 결과 = 랜딩 페이지 조회.
-    차트의 55+는 55-64와 65+ 합산. 도달은 연령별 도달의 합이라 캠페인 고유 도달과 다를 수 있음.
-    광고차단 사용자 등으로 실제보다 소폭 과소집계될 수 있어 소재 간 상대 비교 용도로 권장.
+    데이터: Meta 광고 관리자 내보내기 · 1차 = 2026.7.17~7.20 (성인 18+ · 랜딩 페이지 조회 최적화), 2차 = 2026.7.20~ (13~65+ · 링크 클릭 최적화).
+    1차 차트의 55+는 55-64와 65+ 합산. 도달 합산치는 캠페인 고유 도달과 다를 수 있음.
+    광고차단 사용자 등으로 소폭 과소집계 가능 — 소재 간 상대 비교 용도로 권장.
   </p>
 </div>
 
@@ -282,9 +312,10 @@
     9: "갓생러", 10: "공부 시작", 11: "CPA·LEET·행시", 12: "수능 반수",
     13: "감시형 집중", 14: "작심삼일", 15: "100명 공부 중"
   };
+  function imgSrc(c) { return "img/" + String(c).padStart(2, "0") + ".jpg"; }
+  function thumbHtml(c) { return '<img class="thumb" src="' + imgSrc(c) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">'; }
 
-  // [campaign, rawAgeIdx, lpv, spend, impressions, reach]
-  // rawAge: 0=18-24 1=25-34 2=35-44 3=45-54 4=55-64 5=65+
+  // ---- Phase 1: [campaign, rawAgeIdx, lpv, spend, imp, reach], rawAge 0=18-24 ... 5=65+
   var ROWS = [
     [2,0,30,8064,1602,1347],[3,0,12,3340,634,579],[4,0,37,9773,1942,1707],[5,0,69,9860,2286,1995],
     [6,0,45,11556,2768,2527],[7,0,70,8901,2232,1918],[8,0,12,4439,787,704],[9,0,9,6908,937,837],
@@ -312,17 +343,29 @@
     [14,5,0,108,18,16],[1,5,0,345,44,41],[15,5,0,200,34,31]
   ];
 
-  var RAW_AGES = ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"];
-  var AGES = ["18-24", "25-34", "35-44", "45-54", "55+"]; // 4 = 55-64 + 65+
+  // ---- Phase 2 (7/20~, 13-65+, link clicks): [campaign, clicks, spend, imp, reach]
+  var P2 = [
+    [1,5,2034,508,500],[2,7,2457,573,553],[3,6,1934,455,455],[4,15,2533,602,592],
+    [5,22,3024,752,740],[6,8,2299,460,459],[7,31,3085,730,721],[8,5,2439,602,599],
+    [9,4,2026,415,385],[10,24,3054,528,515],[11,40,3449,873,849],[12,10,2313,600,591],
+    [13,9,2082,557,535],[14,9,2797,467,463],[15,9,2438,791,791]
+  ];
+
+  var AGES = ["18-24", "25-34", "35-44", "45-54", "55+"];
   var CAMPS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-  var METRICS = [
+  var METRICS1 = [
     { key: "lpv",   label: "결과",  unit: "건", better: "desc" },
     { key: "cpa",   label: "CPA",   unit: "",   better: "asc"  },
     { key: "spend", label: "지출",  unit: "",   better: "desc" },
     { key: "imp",   label: "노출",  unit: "회", better: "desc" }
   ];
+  var METRICS2 = [
+    { key: "clicks", label: "클릭",  unit: "회", better: "desc" },
+    { key: "cpc",    label: "CPC",   unit: "",   better: "asc"  },
+    { key: "spend",  label: "지출",  unit: "",   better: "desc" },
+    { key: "imp",    label: "노출",  unit: "회", better: "desc" }
+  ];
 
-  // agg[camp][mergedAge] = {lpv, spend, imp, reach}
   var agg = {};
   CAMPS.forEach(function (c) {
     agg[c] = [];
@@ -343,41 +386,50 @@
   }
   function cpa(o) { return o.lpv > 0 ? o.spend / o.lpv : null; }
 
+  var p2map = {};
+  P2.forEach(function (r) { p2map[r[0]] = { clicks: r[1], spend: r[2], imp: r[3], reach: r[4] }; });
+  function cpc(o) { return o.clicks > 0 ? o.spend / o.clicks : null; }
+
   var fmt = new Intl.NumberFormat("ko-KR");
   function won(v) { return v == null ? "—" : "₩" + fmt.format(Math.round(v)); }
   function num(v) { return fmt.format(v); }
 
-  var state = { metric: "lpv", age: -1, sel: 11 };
-
+  var state = { view: "1", metric: "lpv", age: -1, sel: 11, metric2: "cpc" };
   function ageColor(i) { return "var(--age-" + i + ")"; }
 
-  // ---------- KPI ----------
-  function renderKpis() {
+  // ---------- Phase segmented ----------
+  var phaseSeg = document.getElementById("phaseSeg");
+  phaseSeg.querySelectorAll("button").forEach(function (b) {
+    b.onclick = function () {
+      state.view = b.dataset.v;
+      phaseSeg.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+      ["1", "2", "3"].forEach(function (v) {
+        document.getElementById("view" + v).classList.toggle("on", v === state.view);
+      });
+      hideTip();
+    };
+  });
+
+  // ---------- View 1 ----------
+  function kpiHtml(l, v, f) { return '<div class="kpi"><div class="k-label">' + l + '</div><div class="k-value">' + v + '</div><div class="k-foot">' + f + "</div></div>"; }
+
+  function renderKpis1() {
     var t = { lpv: 0, spend: 0, imp: 0 };
-    CAMPS.forEach(function (c) {
-      var o = totals(c, state.age);
-      t.lpv += o.lpv; t.spend += o.spend; t.imp += o.imp;
-    });
-    var scope = state.age === -1 ? "전체 연령" : AGES[state.age];
-    document.getElementById("kpis").innerHTML =
-      kpi("총 지출", won(t.spend), scope) +
-      kpi("랜딩 페이지 조회", num(t.lpv) + "건", scope) +
-      kpi("평균 CPA", t.lpv ? won(t.spend / t.lpv) : "—", "조회당 비용") +
-      kpi("노출", num(t.imp) + "회", scope);
-  }
-  function kpi(l, v, f) {
-    return '<div class="kpi"><div class="k-label">' + l + '</div><div class="k-value">' + v + '</div><div class="k-foot">' + f + "</div></div>";
+    CAMPS.forEach(function (c) { var o = totals(c, state.age); t.lpv += o.lpv; t.spend += o.spend; t.imp += o.imp; });
+    var scope = state.age === -1 ? "전체 연령 (18+)" : AGES[state.age];
+    document.getElementById("kpis1").innerHTML =
+      kpiHtml("총 지출", won(t.spend), scope) +
+      kpiHtml("랜딩 페이지 조회", num(t.lpv) + "건", scope) +
+      kpiHtml("평균 CPA", t.lpv ? won(t.spend / t.lpv) : "—", "조회당 비용") +
+      kpiHtml("노출", num(t.imp) + "회", scope);
   }
 
-  // ---------- Controls ----------
-  function renderControls() {
+  function renderControls1() {
     var seg = document.getElementById("metricSeg");
-    seg.innerHTML = METRICS.map(function (m) {
-      return '<button role="tab" data-m="' + m.key + '" class="' + (state.metric === m.key ? "on" : "") + '">' + m.label + "</button>";
+    seg.innerHTML = METRICS1.map(function (m) {
+      return '<button data-m="' + m.key + '" class="' + (state.metric === m.key ? "on" : "") + '">' + m.label + "</button>";
     }).join("");
-    seg.querySelectorAll("button").forEach(function (b) {
-      b.onclick = function () { state.metric = b.dataset.m; renderAll(); };
-    });
+    seg.querySelectorAll("button").forEach(function (b) { b.onclick = function () { state.metric = b.dataset.m; renderView1(); }; });
 
     var chips = document.getElementById("ageChips");
     var html = '<button class="chip' + (state.age === -1 ? " on" : "") + '" data-a="-1"><span class="dot"></span>전체</button>';
@@ -385,19 +437,14 @@
       html += '<button class="chip' + (state.age === i ? " on" : "") + '" data-a="' + i + '"><span class="dot" style="background:' + ageColor(i) + '"></span>' + a + "</button>";
     });
     chips.innerHTML = html;
-    chips.querySelectorAll(".chip").forEach(function (b) {
-      b.onclick = function () { state.age = parseInt(b.dataset.a, 10); renderAll(); };
-    });
+    chips.querySelectorAll(".chip").forEach(function (b) { b.onclick = function () { state.age = parseInt(b.dataset.a, 10); renderView1(); }; });
   }
 
-  // ---------- Ranking ----------
-  function metricValue(o) {
-    if (state.metric === "cpa") return cpa(o);
-    return o[state.metric];
-  }
-  function renderRanking() {
-    var m = METRICS.find(function (x) { return x.key === state.metric; });
-    var rows = CAMPS.map(function (c) { return { c: c, o: totals(c, state.age), v: metricValue(totals(c, state.age)) }; });
+  function metricValue1(o) { return state.metric === "cpa" ? cpa(o) : o[state.metric]; }
+
+  function renderRanking1() {
+    var m = METRICS1.find(function (x) { return x.key === state.metric; });
+    var rows = CAMPS.map(function (c) { return { c: c, o: totals(c, state.age), v: metricValue1(totals(c, state.age)) }; });
     rows.sort(function (a, b) {
       if (a.v == null) return 1;
       if (b.v == null) return -1;
@@ -408,46 +455,45 @@
 
     var scope = state.age === -1 ? "전체 연령" : AGES[state.age] + "세";
     document.getElementById("rankTitle").textContent = "소재 랭킹 — " + m.label;
-    document.getElementById("rankSub").textContent =
-      scope + " 기준, " + (m.better === "asc" ? "낮을수록 좋음 (막대 = 비용)" : "높을수록 좋음") + " · 탭하면 아래에 연령 상세";
+    document.getElementById("rankSub").textContent = scope + " 기준, " + (m.better === "asc" ? "낮을수록 좋음 (막대 = 비용)" : "높을수록 좋음") + " · 탭하면 아래에 연령 상세";
 
     var barColor = state.age === -1 ? "var(--accent)" : ageColor(state.age);
     var html = "";
-    rows.forEach(function (r, i) {
+    rows.forEach(function (r) {
       var w = r.v == null || max === 0 ? 0 : (r.v / max) * 100;
-      var valTxt;
-      if (state.metric === "cpa") valTxt = won(r.v);
-      else if (state.metric === "spend") valTxt = won(r.v);
-      else valTxt = r.v == null ? "—" : num(r.v) + (m.unit || "");
+      var valTxt = (state.metric === "cpa" || state.metric === "spend") ? won(r.v) : (r.v == null ? "—" : num(r.v) + (m.unit || ""));
       var sub = state.metric === "cpa" ? num(r.o.lpv) + "건" : (cpa(r.o) ? won(cpa(r.o)) + "/건" : "");
-      html += '<div class="rrow' + (state.sel === r.c ? " sel" : "") + '" tabindex="0" data-c="' + r.c + '" data-i="' + i + '">' +
-        '<div class="name"><span class="no">' + r.c + '</span><span class="nm">' + NAMES[r.c] + "</span></div>" +
+      html += '<div class="rrow' + (state.sel === r.c ? " sel" : "") + '" tabindex="0" data-c="' + r.c + '">' +
+        '<div class="name">' + thumbHtml(r.c) + '<span class="no">' + r.c + '</span><span class="nm">' + NAMES[r.c] + "</span></div>" +
         '<div class="track"><div class="bar" style="width:' + w.toFixed(1) + "%;background:" + barColor + '"></div></div>' +
         '<div class="val">' + valTxt + "<small>" + sub + "</small></div></div>";
     });
     var el = document.getElementById("ranking");
     el.innerHTML = html;
     el.querySelectorAll(".rrow").forEach(function (row) {
-      function pick() { state.sel = parseInt(row.dataset.c, 10); renderRanking(); renderDetail(); }
-      row.onclick = function (ev) { pick(); showRowTip(ev, parseInt(row.dataset.c, 10)); };
+      var c = parseInt(row.dataset.c, 10);
+      function pick() { state.sel = c; renderRanking1(); renderDetail(); }
+      row.onclick = function (ev) { pick(); showRowTip(ev, c); };
       row.onkeydown = function (ev) { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); } };
-      row.onmouseenter = function (ev) { showRowTip(ev, parseInt(row.dataset.c, 10)); };
+      row.onmouseenter = function (ev) { showRowTip(ev, c); };
       row.onmousemove = moveTip;
       row.onmouseleave = hideTip;
     });
 
     document.getElementById("ageLegend").innerHTML =
       '<span class="li" style="color:var(--muted)">연령 색상:</span>' +
-      AGES.map(function (a, i) {
-        return '<span class="li"><span class="sw" style="background:' + ageColor(i) + '"></span>' + a + "</span>";
-      }).join("");
+      AGES.map(function (a, i) { return '<span class="li"><span class="sw" style="background:' + ageColor(i) + '"></span>' + a + "</span>"; }).join("");
   }
 
-  // ---------- Detail ----------
+  function dk(l, v) { return '<div class="dk"><div class="k-label">' + l + '</div><div class="k-value">' + v + "</div></div>"; }
+
   function renderDetail() {
     var c = state.sel;
     var t = totals(c, -1);
     document.getElementById("detailTitle").textContent = "소재 상세 — " + c + " · " + NAMES[c];
+    var im = document.getElementById("detailImg");
+    im.style.display = "";
+    im.src = imgSrc(c);
     document.getElementById("detailKpis").innerHTML =
       dk("조회", num(t.lpv) + "건") + dk("CPA", won(cpa(t))) + dk("지출", won(t.spend)) + dk("노출", num(t.imp) + "회");
 
@@ -462,9 +508,7 @@
     });
     document.getElementById("detailAges").innerHTML = html;
   }
-  function dk(l, v) { return '<div class="dk"><div class="k-label">' + l + '</div><div class="k-value">' + v + "</div></div>"; }
 
-  // ---------- Heatmap ----------
   function seqColor(v, max) {
     if (v <= 0) return null;
     var t = Math.sqrt(v / max);
@@ -475,18 +519,13 @@
     var order = CAMPS.slice().sort(function (a, b) { return totals(b, -1).lpv - totals(a, -1).lpv; });
     var max = 0;
     order.forEach(function (c) { agg[c].forEach(function (o) { if (o.lpv > max) max = o.lpv; }); });
-    var html = '<div></div>' + AGES.map(function (a) { return '<div class="hc">' + a + "</div>"; }).join("");
+    var html = "<div></div>" + AGES.map(function (a) { return '<div class="hc">' + a + "</div>"; }).join("");
     order.forEach(function (c) {
       html += '<div class="hr">' + c + " " + NAMES[c] + "</div>";
       agg[c].forEach(function (o, i) {
         var col = seqColor(o.lpv, max);
-        if (!col) {
-          html += '<div class="cell zero" tabindex="0" data-c="' + c + '" data-a="' + i + '">·</div>';
-        } else {
-          var ink = col.light ? "#ffffff" : "var(--ink)";
-          var darkFix = col.light ? "" : "";
-          html += '<div class="cell" tabindex="0" data-c="' + c + '" data-a="' + i + '" style="background:' + col.bg + ";color:" + ink + '">' + o.lpv + "</div>";
-        }
+        if (!col) html += '<div class="cell zero" tabindex="0" data-c="' + c + '" data-a="' + i + '">·</div>';
+        else html += '<div class="cell" tabindex="0" data-c="' + c + '" data-a="' + i + '" style="background:' + col.bg + ";color:" + (col.light ? "#ffffff" : "var(--ink)") + '">' + o.lpv + "</div>";
       });
     });
     var el = document.getElementById("heatmap");
@@ -495,37 +534,143 @@
       function show(ev) {
         var c = parseInt(cell.dataset.c, 10), a = parseInt(cell.dataset.a, 10);
         var o = agg[c][a];
-        tip('<b>' + c + " · " + NAMES[c] + "</b><br>" + AGES[a] + "세<br>조회 " + num(o.lpv) + "건 · CPA " + (cpa(o) ? won(cpa(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
+        tip("<b>" + c + " · " + NAMES[c] + "</b><br>" + AGES[a] + "세<br>조회 " + num(o.lpv) + "건 · CPA " + (cpa(o) ? won(cpa(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
       }
-      cell.onmouseenter = show;
-      cell.onmousemove = moveTip;
-      cell.onmouseleave = hideTip;
-      cell.onclick = show;
+      cell.onmouseenter = show; cell.onmousemove = moveTip; cell.onmouseleave = hideTip; cell.onclick = show;
     });
   }
 
-  // ---------- Table ----------
-  function renderTable() {
+  function renderTable1() {
     var rows = CAMPS.map(function (c) { return { c: c, t: totals(c, -1) }; });
     rows.sort(function (a, b) { return (cpa(a.t) || 1e9) - (cpa(b.t) || 1e9); });
     var html = "<table><thead><tr><th>소재</th><th>조회</th><th>CPA</th><th>지출</th><th>노출</th><th>도달</th><th>18-24</th><th>25-34</th><th>35-44</th><th>45-54</th><th>55+</th></tr></thead><tbody>";
     rows.forEach(function (r, i) {
-      html += "<tr" + (i === 0 ? ' class="best"' : "") + "><td>" + r.c + " " + NAMES[r.c] + "</td><td>" + num(r.t.lpv) + "</td><td>" + won(cpa(r.t)) + "</td><td>" + won(r.t.spend) +
-        "</td><td>" + num(r.t.imp) + "</td><td>" + num(r.t.reach) + "</td>";
+      html += "<tr" + (i === 0 ? ' class="best"' : "") + "><td>" + r.c + " " + NAMES[r.c] + "</td><td>" + num(r.t.lpv) + "</td><td>" + won(cpa(r.t)) + "</td><td>" + won(r.t.spend) + "</td><td>" + num(r.t.imp) + "</td><td>" + num(r.t.reach) + "</td>";
       agg[r.c].forEach(function (o) { html += "<td>" + num(o.lpv) + "</td>"; });
       html += "</tr>";
     });
-    html += "</tbody></table>";
-    document.getElementById("tableWrap").innerHTML = html;
+    document.getElementById("tableWrap").innerHTML = html + "</tbody></table>";
+  }
+
+  // ---------- View 2 ----------
+  function renderKpis2() {
+    var t = { clicks: 0, spend: 0, imp: 0 };
+    CAMPS.forEach(function (c) { var o = p2map[c]; t.clicks += o.clicks; t.spend += o.spend; t.imp += o.imp; });
+    document.getElementById("kpis2").innerHTML =
+      kpiHtml("총 지출", won(t.spend), "13세+ · 1일차") +
+      kpiHtml("링크 클릭", num(t.clicks) + "회", "13세+ · 1일차") +
+      kpiHtml("평균 CPC", t.clicks ? won(t.spend / t.clicks) : "—", "클릭당 비용") +
+      kpiHtml("노출", num(t.imp) + "회", "13세+ · 1일차");
+  }
+
+  function renderControls2() {
+    var seg = document.getElementById("metricSeg2");
+    seg.innerHTML = METRICS2.map(function (m) {
+      return '<button data-m="' + m.key + '" class="' + (state.metric2 === m.key ? "on" : "") + '">' + m.label + "</button>";
+    }).join("");
+    seg.querySelectorAll("button").forEach(function (b) { b.onclick = function () { state.metric2 = b.dataset.m; renderView2(); }; });
+  }
+
+  function renderRanking2() {
+    var m = METRICS2.find(function (x) { return x.key === state.metric2; });
+    var rows = CAMPS.map(function (c) {
+      var o = p2map[c];
+      var v = state.metric2 === "cpc" ? cpc(o) : o[state.metric2];
+      return { c: c, o: o, v: v };
+    });
+    rows.sort(function (a, b) {
+      if (a.v == null) return 1;
+      if (b.v == null) return -1;
+      return m.better === "asc" ? a.v - b.v : b.v - a.v;
+    });
+    var max = 0;
+    rows.forEach(function (r) { if (r.v != null && r.v > max) max = r.v; });
+
+    document.getElementById("rankTitle2").textContent = "소재 랭킹 — " + m.label + " (2차)";
+    document.getElementById("rankSub2").textContent = "13세+ 기준, " + (m.better === "asc" ? "낮을수록 좋음 (막대 = 비용)" : "높을수록 좋음");
+
+    var html = "";
+    rows.forEach(function (r) {
+      var w = r.v == null || max === 0 ? 0 : (r.v / max) * 100;
+      var valTxt = (state.metric2 === "cpc" || state.metric2 === "spend") ? won(r.v) : (r.v == null ? "—" : num(r.v) + (m.unit || ""));
+      var sub = state.metric2 === "cpc" ? num(r.o.clicks) + "클릭" : (cpc(r.o) ? won(cpc(r.o)) + "/클릭" : "");
+      html += '<div class="rrow" tabindex="0" data-c="' + r.c + '">' +
+        '<div class="name">' + thumbHtml(r.c) + '<span class="no">' + r.c + '</span><span class="nm">' + NAMES[r.c] + "</span></div>" +
+        '<div class="track"><div class="bar" style="width:' + w.toFixed(1) + '%"></div></div>' +
+        '<div class="val">' + valTxt + "<small>" + sub + "</small></div></div>";
+    });
+    var el = document.getElementById("ranking2");
+    el.innerHTML = html;
+    el.querySelectorAll(".rrow").forEach(function (row) {
+      var c = parseInt(row.dataset.c, 10);
+      function show(ev) {
+        var o = p2map[c];
+        tip("<b>" + c + " · " + NAMES[c] + "</b><br>13세+ · 1일차<br>클릭 " + num(o.clicks) + "회 · CPC " + (cpc(o) ? won(cpc(o)) : "—") + "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회", ev);
+      }
+      row.onmouseenter = show; row.onmousemove = moveTip; row.onmouseleave = hideTip; row.onclick = show;
+    });
+  }
+
+  function renderTable2() {
+    var rows = CAMPS.map(function (c) { return { c: c, o: p2map[c] }; });
+    rows.sort(function (a, b) { return (cpc(a.o) || 1e9) - (cpc(b.o) || 1e9); });
+    var html = "<table><thead><tr><th>소재</th><th>클릭</th><th>CPC</th><th>지출</th><th>노출</th><th>도달</th><th>CPM</th></tr></thead><tbody>";
+    rows.forEach(function (r, i) {
+      var cpm = r.o.imp ? r.o.spend / r.o.imp * 1000 : null;
+      html += "<tr" + (i === 0 ? ' class="best"' : "") + "><td>" + r.c + " " + NAMES[r.c] + "</td><td>" + num(r.o.clicks) + "</td><td>" + won(cpc(r.o)) + "</td><td>" + won(r.o.spend) + "</td><td>" + num(r.o.imp) + "</td><td>" + num(r.o.reach) + "</td><td>" + won(cpm) + "</td></tr>";
+    });
+    document.getElementById("tableWrap2").innerHTML = html + "</tbody></table>";
+  }
+
+  // ---------- View 3 ----------
+  function renderView3() {
+    var t1 = { lpv: 0, spend: 0, imp: 0 };
+    CAMPS.forEach(function (c) { var o = totals(c, -1); t1.lpv += o.lpv; t1.spend += o.spend; t1.imp += o.imp; });
+    var t2 = { clicks: 0, spend: 0, imp: 0 };
+    CAMPS.forEach(function (c) { var o = p2map[c]; t2.clicks += o.clicks; t2.spend += o.spend; t2.imp += o.imp; });
+    document.getElementById("kpis3").innerHTML =
+      kpiHtml("총 지출 (1+2차)", won(t1.spend + t2.spend), "1차 " + won(t1.spend) + " · 2차 " + won(t2.spend)) +
+      kpiHtml("총 노출", num(t1.imp + t2.imp) + "회", "1차 " + num(t1.imp) + " · 2차 " + num(t2.imp)) +
+      kpiHtml("1차 랜딩 조회", num(t1.lpv) + "건", "평균 CPA " + won(t1.spend / t1.lpv)) +
+      kpiHtml("2차 링크 클릭", num(t2.clicks) + "회", "평균 CPC " + won(t2.spend / t2.clicks));
+
+    var r1 = CAMPS.slice().sort(function (a, b) { return (cpa(totals(a, -1)) || 1e9) - (cpa(totals(b, -1)) || 1e9); });
+    var r2 = CAMPS.slice().sort(function (a, b) { return (cpc(p2map[a]) || 1e9) - (cpc(p2map[b]) || 1e9); });
+    var rank1 = {}, rank2 = {};
+    r1.forEach(function (c, i) { rank1[c] = i + 1; });
+    r2.forEach(function (c, i) { rank2[c] = i + 1; });
+
+    var maxCpa = 0, maxCpc = 0;
+    CAMPS.forEach(function (c) {
+      var a = cpa(totals(c, -1)); if (a && a > maxCpa) maxCpa = a;
+      var b = cpc(p2map[c]); if (b && b > maxCpc) maxCpc = b;
+    });
+
+    var html = "";
+    r2.forEach(function (c) {
+      var a = cpa(totals(c, -1)), b = cpc(p2map[c]);
+      var d = rank1[c] - rank2[c];
+      var deltaCls = d > 0 ? "up" : d < 0 ? "down" : "same";
+      var deltaTxt = d > 0 ? "▲" + d : d < 0 ? "▼" + (-d) : "–";
+      var cpm1 = totals(c, -1).spend / totals(c, -1).imp * 1000;
+      var cpm2 = p2map[c].spend / p2map[c].imp * 1000;
+      html += '<div class="crow">' +
+        '<img src="' + imgSrc(c) + '" alt="' + NAMES[c] + '" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
+        "<div>" +
+          '<div class="c-name">' + c + " " + NAMES[c] +
+            ' <span class="rk">1차 ' + rank1[c] + "위</span><span class=\"rk\">2차 " + rank2[c] + "위</span>" +
+            '<span class="delta ' + deltaCls + '">' + deltaTxt + "</span></div>" +
+          '<div class="cbar"><span class="lbl">1차 CPA</span><div class="track"><div class="bar" style="width:' + (a / maxCpa * 100).toFixed(1) + '%;background:var(--p1bar)"></div></div><span class="v">' + won(a) + "</span></div>" +
+          '<div class="cbar"><span class="lbl">2차 CPC</span><div class="track"><div class="bar" style="width:' + (b / maxCpc * 100).toFixed(1) + '%;background:var(--accent)"></div></div><span class="v">' + won(b) + "</span></div>" +
+          '<div class="cpm">CPM ' + won(cpm1) + " → " + won(cpm2) + "</div>" +
+        "</div></div>";
+    });
+    document.getElementById("compare").innerHTML = html;
   }
 
   // ---------- Tooltip ----------
   var tt = document.getElementById("tooltip");
-  function tip(html, ev) {
-    tt.innerHTML = html;
-    tt.style.display = "block";
-    moveTip(ev);
-  }
+  function tip(html, ev) { tt.innerHTML = html; tt.style.display = "block"; moveTip(ev); }
   function showRowTip(ev, c) {
     var o = totals(c, state.age);
     var scope = state.age === -1 ? "전체 연령" : AGES[state.age] + "세";
@@ -548,15 +693,15 @@
     if (!ev.target.closest(".cell") && !ev.target.closest(".rrow")) hideTip();
   }, { passive: true });
 
-  function renderAll() {
-    renderKpis();
-    renderControls();
-    renderRanking();
-    renderDetail();
-  }
-  renderAll();
+  function renderView1() { renderKpis1(); renderControls1(); renderRanking1(); renderDetail(); }
+  function renderView2() { renderKpis2(); renderControls2(); renderRanking2(); }
+
+  renderView1();
   renderHeatmap();
-  renderTable();
+  renderTable1();
+  renderView2();
+  renderTable2();
+  renderView3();
 })();
 </script>
 </body>
