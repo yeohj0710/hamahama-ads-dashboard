@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>하마하마 광고 대시보드</title>
-<meta name="description" content="하마하마 메타 광고 소재 15종 · 1차(성인 18+) × 2차(13세+) 성과 대시보드">
+<meta name="description" content="하마하마 메타 광고 소재 15종 · 1차(성인 18+) × 2차(13세+) × 3차(Top 4 통합) 성과 대시보드">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
 <style>
   :root {
@@ -148,6 +148,24 @@
   .cbar .bar { height: 10px; border-radius: 0 4px 4px 0; min-width: 2px; }
   .cbar .v { font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
   .crow .cpm { font-size: 11px; color: var(--muted); margin-top: 5px; }
+  .rk.t4b { color: var(--accent); background: var(--accent-soft); }
+
+  .t4grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .t4c { background: var(--bg); border-radius: 10px; padding: 8px; }
+  .t4c img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); display: block; }
+  .t4c .t4n { font-size: 12px; font-weight: 700; margin-top: 6px; line-height: 1.3; }
+  .t4c .t4r { font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+  @media (max-width: 560px) { .t4grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .c23 { display: grid; grid-template-columns: 46px 28px 1fr 62px; gap: 3px 8px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--grid); }
+  .c23:last-child { border-bottom: 0; }
+  .c23 .aname { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .c23 .pl { font-size: 10.5px; font-weight: 700; color: var(--muted); }
+  .c23 .dchip { font-size: 10.5px; font-weight: 750; }
+  .c23 .track { height: 12px; display: flex; align-items: center; }
+  .c23 .bar { height: 10px; border-radius: 0 4px 4px 0; min-width: 2px; }
+  .c23 .v { font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+  @media (prefers-reduced-motion: no-preference) { .c23 .bar { transition: width 0.35s ease; } }
 
   .note { font-size: 12.5px; color: var(--ink-2); background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; }
   .foot { font-size: 12px; color: var(--muted); line-height: 1.7; padding: 0 4px; }
@@ -169,16 +187,17 @@
     <div class="eyebrow">HAMAHAMA · META ADS</div>
     <h1>광고 성과 대시보드</h1>
     <div class="meta-line">
-      <span>1차 · 성인 18+ · 7.17~7.20 종료</span>
-      <span>2차 · 13세+ · 7.20~ 진행 중</span>
-      <span>소재 15종 × 일 ₩10,000</span>
+      <span>1차 · 성인 18+ · 7.17~7.20</span>
+      <span>2차 · 13세+ · 7.20~7.21</span>
+      <span>3차 · Top 4 통합 · 7.21~7.22</span>
     </div>
   </header>
 
   <div class="phase-seg" id="phaseSeg">
-    <button data-v="1" class="on">1차 · 성인 18+<small>랜딩 조회 기준</small></button>
-    <button data-v="2">2차 · 13세+<small>링크 클릭 기준</small></button>
-    <button data-v="3">비교 · 합산<small>순위 재현성</small></button>
+    <button data-v="1" class="on">1차<small>성인 18+ · 랜딩</small></button>
+    <button data-v="2">2차<small>13세+ · 클릭</small></button>
+    <button data-v="3">3차<small>Top 4 통합</small></button>
+    <button data-v="4">비교<small>1·2·3차</small></button>
   </div>
 
   <!-- ================= VIEW 1 ================= -->
@@ -238,7 +257,7 @@
 
   <!-- ================= VIEW 2 ================= -->
   <div class="view" id="view2">
-    <div class="note">2차는 <b>7/20 시작, 7/21 오전까지 집행분</b>입니다 (총 ₩77,849 소진). 연령 13~65+ · 성과 목표 링크 클릭. 표본이 아직 작아 순위가 흔들릴 수 있고, 특히 연령별 수치는 방향성 참고용입니다. 차트의 45+는 45-54·55-64·65+ 합산.</div>
+    <div class="note">2차는 <b>7/20~7/21 집행 후 종료</b>됐습니다 — 최종 <b>₩79,727 소진 · 클릭 411회 (평균 CPC ₩194)</b>. 연령 13~65+ · 성과 목표 링크 클릭. 캠페인당 표본이 작아 연령별 수치는 방향성 참고용입니다. 차트의 45+는 45-54·55-64·65+ 합산.</div>
 
     <div class="kpis" id="kpis2"></div>
 
@@ -266,12 +285,12 @@
 
     <div class="card">
       <h2>핵심 인사이트 — 2차 (13-17 첫 데이터)</h2>
-      <p class="sub">7/20~7/21 오전 · 표본 작음 주의</p>
+      <p class="sub">7/20~7/21 최종치 · 표본 작음 주의</p>
       <div class="insights">
-        <div class="ins"><span class="tag good">10대 실증</span><div>13-17에 <b>노출 2,952회 · 클릭 12회</b>가 실제로 찍혔습니다. 구버전 수동 캠페인 전환이 목적대로 작동한다는 최종 확인.</div></div>
-        <div class="ins"><span class="tag info">10대 노출 쏠림</span><div>Meta가 10대에게 노출을 몰아준 소재는 <b>2 아침형(760회)</b> · <b>8 여름방학(568회)</b> · <b>1 릴스 10시간(320회)</b>. 반면 11 CPA·LEET·행시는 10대 노출이 6회뿐 — 알고리즘이 소재별로 연령을 알아서 가르는 중.</div></div>
-        <div class="ins"><span class="tag good">10대 클릭</span><div>10대 클릭은 <b>8 여름방학(4회)</b> · <b>1 릴스 10시간(3회)</b> · <b>12 수능 반수(2회)</b>에서 발생. 1차에서 최하위였던 1·8이 10대에서 첫 반응을 보이는 게 포인트 — 표본은 작지만 "10대 겨냥 소재" 가설 방향과 일치.</div></div>
-        <div class="ins"><span class="tag bad">주의</span><div><b>2 아침형 vs 저녁형</b>은 10대 노출을 가장 많이 받고도 클릭 1회, 전체 CPC ₩662로 2차 꼴찌. 노출만 먹고 반응이 없는 상태.</div></div>
+        <div class="ins"><span class="tag good">10대 실증</span><div>13-17에 <b>노출 3,038회 · 클릭 14회</b>가 실제로 찍혔습니다. 구버전 수동 캠페인 전환이 목적대로 작동한다는 최종 확인.</div></div>
+        <div class="ins"><span class="tag info">10대 노출 쏠림</span><div>Meta가 10대에게 노출을 몰아준 소재는 <b>2 아침형(803회)</b> · <b>8 여름방학(577회)</b> · <b>1 릴스 10시간(328회)</b>. 반면 11 CPA·LEET·행시는 10대 노출이 6회뿐 — 알고리즘이 소재별로 연령을 알아서 가르는 중.</div></div>
+        <div class="ins"><span class="tag good">10대 클릭</span><div>10대 클릭은 <b>8 여름방학(4회)</b> · <b>1 릴스 10시간(3회)</b> · <b>2 아침형(3회)</b> · <b>12 수능 반수(2회)</b>에서 발생. 1차에서 최하위였던 1·8이 10대에서 첫 반응을 보이는 게 포인트 — 표본은 작지만 "10대 겨냥 소재" 가설 방향과 일치.</div></div>
+        <div class="ins"><span class="tag bad">주의</span><div><b>2 아침형 vs 저녁형</b>은 10대 노출을 가장 많이 받고 막판에 10대 클릭 3회를 건졌지만, 전체 CPC <b>₩541</b>로 여전히 2차 꼴찌. 노출 대비 반응이 가장 약한 소재.</div></div>
       </div>
     </div>
 
@@ -282,9 +301,73 @@
     </div>
   </div>
 
-  <!-- ================= VIEW 3 ================= -->
+  <!-- ================= VIEW 3 · 3차 Top 4 ================= -->
   <div class="view" id="view3">
+    <div class="note">3차는 1·2차 비용 효율 상위 4종 — <b>11 CPA·LEET·행시 · 7 독서실 70만 원 · 10 공부 시작 · 5 타이머12h</b> — 를 <b>한 광고 세트(일 ₩40,000)</b>에 넣고 Meta 자동 배분으로 집행했습니다. 연령 13~65+ · 링크 클릭 최적화 · 종료. 보고서가 캠페인×연령 단위라 소재별 분해는 없습니다.</div>
+
     <div class="kpis" id="kpis3"></div>
+
+    <div class="card">
+      <h2>투입 소재 4종</h2>
+      <p class="sub">아래 이전 성과는 참고용 — 1차 CPA(랜딩 조회당) · 2차 CPC(클릭당)</p>
+      <div class="t4grid" id="t4grid"></div>
+    </div>
+
+    <div class="card controls">
+      <div>
+        <h2>연령 분석 — 3차</h2>
+        <p class="sub">단일 세트라 연령이 유일한 분해축 · 이번엔 45-54 / 55-64 / 65+까지 세분화</p>
+      </div>
+      <div class="seg" id="metricSeg3"></div>
+      <div id="ageRows3"></div>
+    </div>
+
+    <div class="card">
+      <h2>2차 vs 3차 — 연령별 CPC</h2>
+      <p class="sub">둘 다 링크 클릭 최적화 · 13세+ 타겟이라 직접 비교 가능 · 2차는 15소재 합산</p>
+      <div class="legend" style="margin: 0 0 4px; padding: 0 0 10px; border-top: 0; border-bottom: 1px solid var(--grid);">
+        <span class="li"><span class="sw" style="background:var(--p1bar)"></span>2차 CPC (15소재 개별)</span>
+        <span class="li"><span class="sw" style="background:var(--accent)"></span>3차 CPC (Top 4 통합)</span>
+      </div>
+      <div id="cmp23"></div>
+    </div>
+
+    <div class="card">
+      <h2>핵심 인사이트 — 3차</h2>
+      <p class="sub">Top 4 통합 세트 · 총 ₩53,792</p>
+      <div class="insights">
+        <div class="ins"><span class="tag good">반토막</span><div>평균 CPC <b>₩100</b> — 2차(₩194) 대비 <b>-48%</b>. 모든 연령대에서 CPC가 내려갔고, 클릭 <b>537회</b>로 일 예산 ₩4만짜리 세트 하나가 ₩15만짜리 2차 전체(411회)보다 많이 벌었습니다. 상위 소재 압축 + 자동 배분의 효과.</div></div>
+        <div class="ins"><span class="tag good">중장년 발견</span><div>CPC가 가장 싼 구간은 <b>55-64(₩64 · CTR 9.4%)</b>와 <b>45-54(₩77 · 8.2%)</b>. 나이가 들수록 CTR이 오르는 패턴 — 공시·전문직·타이머 각도의 Top 4가 성인 학습자(또는 학부모)에 정확히 꽂힙니다.</div></div>
+        <div class="ins"><span class="tag info">볼륨은 젊은층</span><div>클릭의 <b>69%가 18-34(373회)</b> — Meta가 노출 자체를 18-34에 59% 몰아줬기 때문. 효율은 중장년, 물량은 젊은층으로 역할이 갈립니다.</div></div>
+        <div class="ins"><span class="tag bad">10대는 미해결</span><div>13-17은 CPM ₩924로 노출이 가장 쌌지만 CTR 0.5% · CPC <b>₩184(최고가)</b>. 2차(₩368)보단 나아졌어도 여전히 꼴찌 — <b>성인용 Top 4로는 10대가 안 잡힙니다</b>. 10대는 1·8 같은 전용 소재의 별도 세트가 필요.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3차 원데이터</h2>
+      <p class="sub">연령별 · 좌우로 스크롤</p>
+      <div class="tbl-scroll" id="tableWrap3"></div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 4 · 비교 ================= -->
+  <div class="view" id="view4">
+    <div class="kpis" id="kpis4"></div>
+
+    <div class="card">
+      <h2>차수 한눈에</h2>
+      <p class="sub">1차는 랜딩 조회, 2·3차는 링크 클릭 기준 — 결과당 비용의 절대값 비교는 2차↔3차만 유효</p>
+      <div class="tbl-scroll">
+        <table style="min-width:640px">
+          <thead><tr><th>차수</th><th>기간</th><th>타겟</th><th>구성</th><th>지출</th><th>결과</th><th>비용/결과</th><th>CPM</th></tr></thead>
+          <tbody>
+            <tr><td>1차 · 랜딩 조회</td><td>7.17~7.20</td><td>18~65+</td><td>15캠페인 × 1소재</td><td>₩305,912</td><td>1,530건</td><td>₩200</td><td>₩5,978</td></tr>
+            <tr><td>2차 · 링크 클릭</td><td>7.20~7.21</td><td>13~65+</td><td>15캠페인 × 1소재</td><td>₩79,727</td><td>411회</td><td>₩194</td><td>₩4,248</td></tr>
+            <tr class="best"><td>3차 · 링크 클릭</td><td>7.21~7.22</td><td>13~65+</td><td>1세트 × Top 4</td><td>₩53,792</td><td>537회</td><td>₩100</td><td>₩3,730</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <div class="card">
       <h2>소재별 1차 vs 2차</h2>
@@ -298,23 +381,25 @@
 
     <div class="card">
       <h2>핵심 인사이트 — 비교</h2>
-      <p class="sub">1차(성인 18+, 랜딩 조회) vs 2차(13세+, 링크 클릭)</p>
+      <p class="sub">1차(성인 18+, 랜딩 조회) vs 2차(13세+, 링크 클릭) vs 3차(Top 4 통합)</p>
       <div class="insights">
-        <div class="ins"><span class="tag good">재현</span><div>비용 효율 <b>상위 4개 구성이 두 차수 동일</b> — {11, 7, 10, 5}. 순서만 재편됐습니다: 1차 11→7→10→5, 2차 <b>7→10→5→11</b>. 11이 4위로 내려온 건 13세+ 풀에서 CPC가 오른 탓이지만 여전히 상위권.</div></div>
+        <div class="ins"><span class="tag good">재현</span><div>비용 효율 <b>상위 4개 구성이 두 차수 동일</b> — {11, 7, 10, 5}. 순서만 재편됐습니다: 1차 11→7→10→5, 2차 최종 <b>7→5→10→11</b> (5·10은 ₩143.0 vs ₩143.6 초접전). 11이 4위로 내려온 건 13세+ 풀에서 CPC가 오른 탓이지만 여전히 상위권.</div></div>
+        <div class="ins"><span class="tag good">통합 보상</span><div>이 4종을 한 세트로 묶은 3차가 <b>CPC ₩100</b>으로 화답 — 2차 평균(₩194) 대비 <b>-48%</b>, 2차 1위 소재 7(₩92)에 육박하는 효율을 <b>8배 볼륨(537클릭)</b>으로 냈습니다. "상위 소재 압축 → 자동 배분" 전략이 검증됨.</div></div>
         <div class="ins"><span class="tag good">상승</span><div><b>3 엉덩이 싸움</b>(5위 유지→5위), <b>4 의대생 말풍선</b>(11위→7위) — 확장 풀에서 순위를 지키거나 끌어올린 소재들.</div></div>
-        <div class="ins"><span class="tag bad">급락</span><div><b>2 아침형 vs 저녁형</b> 10위 → <b>15위(₩662)</b>. 10대 노출을 가장 많이 받고도 클릭이 안 나온 게 원인. 하루 더 보고 안 살아나면 오프 후보.</div></div>
-        <div class="ins"><span class="tag bad">확정 꼴찌권</span><div><b>9 갓생러</b> 1차 15위(₩507) → 2차 14위(₩494). 두 차수 연속 바닥 — 폐기 1순위는 변함없음.</div></div>
-        <div class="ins"><span class="tag info">주의</span><div>1차와 2차는 <b>지표가 다릅니다</b> — 1차는 랜딩 페이지 조회당 비용, 2차는 링크 클릭당 비용(클릭 ⊃ 랜딩 도착). 절대값 비교 대신 <b>차수 내 순위</b>와 <b>CPM</b>으로 비교하세요.</div></div>
-        <div class="ins"><span class="tag info">다음</span><div>랜딩 픽셀(StoreClick)이 이번 주부터 수집 중 — 며칠 뒤엔 "클릭 → 앱스토어 이동" 전환율까지 소재별로 붙여서 판단 가능.</div></div>
+        <div class="ins"><span class="tag bad">급락</span><div><b>2 아침형 vs 저녁형</b> 10위 → <b>15위(₩541)</b>. 10대 노출을 가장 많이 받고도 클릭이 거의 안 나온 게 원인.</div></div>
+        <div class="ins"><span class="tag bad">확정 꼴찌권</span><div><b>9 갓생러</b> 1차 15위(₩507) → 2차 14위(₩510). 두 차수 연속 바닥 — 폐기 1순위는 변함없음.</div></div>
+        <div class="ins"><span class="tag info">주의</span><div>1차와 2·3차는 <b>지표가 다릅니다</b> — 1차는 랜딩 페이지 조회당 비용, 2·3차는 링크 클릭당 비용(클릭 ⊃ 랜딩 도착). 1차와의 절대값 비교 대신 <b>차수 내 순위</b>와 <b>CPM</b>으로 비교하세요. 2차↔3차는 같은 지표라 직접 비교 가능.</div></div>
+        <div class="ins"><span class="tag info">다음</span><div>랜딩 픽셀(StoreClick) 수집 중 — "클릭 → 앱스토어 이동" 전환율이 쌓이면 연령대별 실제 설치 가치까지 판단 가능. 10대 공략은 1·8 등 10대 반응 소재만 모은 별도 세트가 다음 실험 후보.</div></div>
       </div>
     </div>
 
-    <p class="foot">2차는 아직 표본이 작습니다 (캠페인당 ₩4~11천). 순위 변동이 큰 소재는 2~3일 치가 쌓인 뒤의 순위로 최종 판단 권장.</p>
+    <p class="foot">2차 소재별 수치는 표본이 작습니다 (캠페인당 ₩4~11천). 소재 순위는 방향성 참고용으로, 3차처럼 볼륨이 실린 데이터로 최종 판단 권장.</p>
   </div>
 
   <p class="foot">
-    데이터: Meta 광고 관리자 내보내기 · 1차 = 2026.7.17~7.20 (성인 18+ · 랜딩 페이지 조회 최적화), 2차 = 2026.7.20~7.21 오전 (13~65+ · 링크 클릭 최적화).
+    데이터: Meta 광고 관리자 내보내기 (보고 기간 2026.7.16~7.22) · 1차 = 7.17~7.20 (성인 18+ · 랜딩 조회 최적화), 2차 = 7.20~7.21 (13~65+ · 링크 클릭 최적화, 종료 후 최종치), 3차 = 7.21~7.22 (13~65+ · Top 4 통합 세트 · 링크 클릭 최적화).
     1차 차트의 55+는 55-64와 65+ 합산, 2차 차트의 45+는 45-54·55-64·65+ 합산. 도달 합산치는 캠페인 고유 도달과 다를 수 있음.
+    연령 미상 노출은 2차 ₩1 제외, 3차 ₩3 합계에만 포함. 7/20 폐기된 테스트 캠페인(지출 ₩77)은 제외.
     광고차단 사용자 등으로 소폭 과소집계 가능 — 소재 간 상대 비교 용도로 권장.
   </p>
 </div>
@@ -362,25 +447,36 @@
     [14,5,0,108,18,16],[1,5,0,345,44,41],[15,5,0,200,34,31]
   ];
 
-  // ---- Phase 2 (7/20~7/21, 13-65+, link clicks): [campaign, ageIdx, clicks, spend, imp, reach]
+  // ---- Phase 2 (7/20~7/21 최종, 13-65+, link clicks): [campaign, ageIdx, clicks, spend, imp, reach]
   // ageIdx: 0=13-17 1=18-24 2=25-34 3=35-44 4=45+ (45-54 + 55-64 + 65+)
   var P2ROWS = [
-    [1,0,3,445,320,298],[1,1,4,1003,252,247],[1,2,0,1042,173,166],[1,3,3,887,112,108],[1,4,6,1104,146,141],
-    [2,0,1,1928,760,668],[2,1,2,1207,345,337],[2,2,1,1000,198,194],[2,3,1,591,89,88],[2,4,3,567,103,99],
-    [3,0,0,162,136,129],[3,1,1,631,161,156],[3,2,7,1305,284,271],[3,3,9,1368,181,173],[3,4,7,962,138,126],
-    [4,0,0,99,80,75],[4,1,11,1884,615,587],[4,2,3,1348,333,308],[4,3,4,600,105,102],[4,4,7,1173,171,170],
-    [5,0,0,275,162,160],[5,1,25,2805,716,683],[5,2,13,2081,436,418],[5,3,1,416,79,78],[5,4,1,275,39,39],
-    [6,0,1,79,66,63],[6,1,9,2183,514,486],[6,2,10,1590,295,295],[6,3,0,628,82,81],[6,4,2,381,57,54],
-    [7,0,0,44,45,44],[7,1,19,1889,504,469],[7,2,34,2943,667,667],[7,3,9,648,127,124],[7,4,1,268,41,39],
-    [8,0,4,1083,568,531],[8,1,2,1299,359,357],[8,2,1,543,127,126],[8,3,2,459,62,61],[8,4,5,1101,128,121],
-    [9,0,0,228,228,181],[9,1,3,1432,240,225],[9,2,3,1378,167,160],[9,3,1,521,54,53],[9,4,1,396,45,44],
-    [10,0,1,145,119,116],[10,1,3,654,137,131],[10,2,12,1749,267,256],[10,3,16,1751,232,225],[10,4,6,1163,153,150],
+    [1,0,3,458,328,313],[1,1,4,1042,260,257],[1,2,0,1067,177,171],[1,3,3,895,113,109],[1,4,7,1117,147,143],
+    [2,0,3,2037,803,738],[2,1,2,1220,347,340],[2,2,1,1000,198,194],[2,3,1,591,89,88],[2,4,3,567,103,99],
+    [3,0,0,162,136,131],[3,1,1,650,166,164],[3,2,8,1404,298,292],[3,3,10,1415,188,182],[3,4,8,1037,145,139],
+    [4,0,0,99,80,75],[4,1,11,1924,631,613],[4,2,3,1391,345,330],[4,3,4,605,107,105],[4,4,7,1195,175,175],
+    [5,0,0,276,164,162],[5,1,27,2876,738,724],[5,2,13,2135,447,433],[5,3,1,435,82,81],[5,4,1,284,40,40],
+    [6,0,1,80,68,64],[6,1,9,2263,532,513],[6,2,10,1629,303,303],[6,3,0,628,82,81],[6,4,2,410,61,60],
+    [7,0,0,44,46,45],[7,1,19,1916,510,483],[7,2,35,2984,679,679],[7,3,9,655,129,126],[7,4,1,270,42,41],
+    [8,0,4,1108,577,542],[8,1,2,1307,361,361],[8,2,1,585,131,130],[8,3,2,461,63,62],[8,4,5,1105,129,125],
+    [9,0,0,241,238,191],[9,1,3,1455,247,238],[9,2,3,1432,172,165],[9,3,1,523,55,55],[9,4,1,425,48,47],
+    [10,0,1,145,119,117],[10,1,3,664,140,136],[10,2,12,1813,278,267],[10,3,16,1784,238,232],[10,4,7,1193,155,153],
     [11,0,0,9,6,6],[11,1,30,5284,1668,1668],[11,2,27,3512,830,823],[11,3,9,1211,202,198],[11,4,7,1083,166,163],
-    [12,0,2,166,154,144],[12,1,12,2293,654,619],[12,2,6,1320,269,258],[12,3,0,317,45,44],[12,4,2,358,53,53],
-    [13,0,0,142,153,137],[13,1,5,901,275,270],[13,2,8,1384,269,259],[13,3,1,657,116,111],[13,4,3,648,86,81],
-    [14,0,0,124,117,109],[14,1,7,1578,303,294],[14,2,6,1976,268,258],[14,3,4,830,80,76],[14,4,0,646,58,58],
-    [15,0,0,46,38,35],[15,1,4,1728,581,563],[15,2,7,1443,425,418],[15,3,0,296,81,78],[15,4,0,184,43,43]
+    [12,0,2,168,158,148],[12,1,13,2408,679,651],[12,2,6,1351,276,276],[12,3,0,321,47,46],[12,4,2,362,55,55],
+    [13,0,0,142,154,142],[13,1,5,957,285,284],[13,2,8,1413,278,268],[13,3,1,707,121,118],[13,4,3,673,89,87],
+    [14,0,0,127,120,111],[14,1,7,1623,309,303],[14,2,6,2067,276,265],[14,3,4,860,84,81],[14,4,1,646,58,58],
+    [15,0,0,49,41,38],[15,1,5,1790,595,580],[15,2,7,1463,431,430],[15,3,0,302,83,82],[15,4,0,197,46,46]
   ];
+
+  // ---- Phase 3 (7/21~7/22, Top 4 통합 세트, 13-65+, link clicks): 연령 7분할 [clicks, spend, imp, reach]
+  var AGES3 = ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"];
+  var P3ROWS = [
+    [20,3683,3985,2457],[158,17311,4329,4077],[215,21075,4170,3805],[60,5394,902,852],
+    [46,3546,559,544],[31,1972,331,308],[7,808,138,130]
+  ];
+  var P3UNK = { clicks: 0, spend: 3, imp: 6, reach: 4 }; // 연령 미상 — 합계에만 포함
+  var T4 = [11, 7, 10, 5]; // 3차 투입 소재 (1·2차 비용 효율 상위 4)
+  // 2차 연령 7분할 CPC 비교용 [clicks, spend]
+  var P2A7 = [[14,5145],[141,27379],[140,25246],[61,11393],[42,7717],[7,2030],[6,817]];
 
   var AGES = ["18-24", "25-34", "35-44", "45-54", "55+"];
   var AGES2 = ["13-17", "18-24", "25-34", "35-44", "45+"];
@@ -441,7 +537,7 @@
   function won(v) { return v == null ? "—" : "₩" + fmt.format(Math.round(v)); }
   function num(v) { return fmt.format(v); }
 
-  var state = { view: "1", metric: "lpv", age: -1, sel: 11, metric2: "cpc", age2: -1 };
+  var state = { view: "1", metric: "lpv", age: -1, sel: 11, metric2: "cpc", age2: -1, metric3: "clicks" };
   function ageColor(i) { return "var(--age-" + i + ")"; }
 
   // ---------- Phase segmented ----------
@@ -450,10 +546,11 @@
     b.onclick = function () {
       state.view = b.dataset.v;
       phaseSeg.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
-      ["1", "2", "3"].forEach(function (v) {
+      ["1", "2", "3", "4"].forEach(function (v) {
         document.getElementById("view" + v).classList.toggle("on", v === state.view);
       });
       hideTip();
+      window.scrollTo(0, 0);
     };
   });
 
@@ -705,17 +802,125 @@
     document.getElementById("tableWrap2").innerHTML = html + "</tbody></table>";
   }
 
-  // ---------- View 3 ----------
-  function renderView3() {
+  // ---------- View 3 (3차 · Top 4 통합) ----------
+  var METRICS3 = [
+    { key: "clicks", label: "클릭", better: "desc" },
+    { key: "cpc",    label: "CPC",  better: "asc"  },
+    { key: "spend",  label: "지출", better: "desc" },
+    { key: "imp",    label: "노출", better: "desc" }
+  ];
+  function p3obj(i) { var r = P3ROWS[i]; return { clicks: r[0], spend: r[1], imp: r[2], reach: r[3] }; }
+  function p3total() {
+    var t = { clicks: P3UNK.clicks, spend: P3UNK.spend, imp: P3UNK.imp, reach: P3UNK.reach };
+    P3ROWS.forEach(function (r) { t.clicks += r[0]; t.spend += r[1]; t.imp += r[2]; t.reach += r[3]; });
+    return t;
+  }
+
+  function renderKpis3() {
+    var t = p3total();
+    document.getElementById("kpis3").innerHTML =
+      kpiHtml("총 지출", won(t.spend), "세트 일 예산 ₩40,000") +
+      kpiHtml("링크 클릭", num(t.clicks) + "회", "2차 전체(411회)보다 많음") +
+      kpiHtml("평균 CPC", won(t.spend / t.clicks), "2차 ₩194 대비 -48%") +
+      kpiHtml("노출", num(t.imp) + "회", "CTR " + (t.clicks / t.imp * 100).toFixed(1) + "%");
+  }
+
+  function renderT4() {
+    document.getElementById("t4grid").innerHTML = T4.map(function (c) {
+      var a = cpa(totals(c, -1)), b = cpc(totals2(c, -1));
+      return '<div class="t4c"><img src="' + imgSrc(c) + '" alt="' + NAMES[c] + '" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
+        '<div class="t4n">' + c + " " + NAMES[c] + "</div>" +
+        '<div class="t4r">1차 CPA ' + won(a) + "<br>2차 CPC " + won(b) + "</div></div>";
+    }).join("");
+  }
+
+  function renderAgeRows3() {
+    var seg = document.getElementById("metricSeg3");
+    seg.innerHTML = METRICS3.map(function (m) {
+      return '<button data-m="' + m.key + '" class="' + (state.metric3 === m.key ? "on" : "") + '">' + m.label + "</button>";
+    }).join("");
+    seg.querySelectorAll("button").forEach(function (b) { b.onclick = function () { state.metric3 = b.dataset.m; renderAgeRows3(); }; });
+
+    var vals = AGES3.map(function (a, i) {
+      var o = p3obj(i);
+      return { a: a, o: o, v: state.metric3 === "cpc" ? (o.clicks ? o.spend / o.clicks : null) : o[state.metric3] };
+    });
+    var max = 0;
+    vals.forEach(function (r) { if (r.v != null && r.v > max) max = r.v; });
+    var html = "";
+    vals.forEach(function (r) {
+      var w = r.v == null || max === 0 ? 0 : (r.v / max) * 100;
+      var mainTxt = (state.metric3 === "cpc" || state.metric3 === "spend") ? won(r.v) : num(r.v) + "회";
+      var sub = state.metric3 === "cpc" ? num(r.o.clicks) + "클릭" : (r.o.clicks ? won(r.o.spend / r.o.clicks) + "/클릭" : "—");
+      html += '<div class="arow"><div class="aname">' + r.a + "</div>" +
+        '<div class="track"><div class="bar" style="width:' + w.toFixed(1) + '%;background:var(--accent)"></div></div>' +
+        '<div class="val">' + mainTxt + ' <span class="cpa">· ' + sub + "</span></div></div>";
+    });
+    var el = document.getElementById("ageRows3");
+    el.innerHTML = html;
+    el.querySelectorAll(".arow").forEach(function (row, i) {
+      var o = p3obj(i);
+      function show(ev) {
+        tip("<b>" + AGES3[i] + "세</b><br>클릭 " + num(o.clicks) + "회 · CPC " + (o.clicks ? won(o.spend / o.clicks) : "—") +
+          "<br>지출 " + won(o.spend) + " · 노출 " + num(o.imp) + "회<br>CTR " + (o.clicks / o.imp * 100).toFixed(1) + "% · CPM " + won(o.spend / o.imp * 1000), ev);
+      }
+      row.onmouseenter = show; row.onmousemove = moveTip; row.onmouseleave = hideTip; row.onclick = show;
+    });
+  }
+
+  function renderCmp23() {
+    var max = 0;
+    var rows = AGES3.map(function (a, i) {
+      var c2 = P2A7[i][0] ? P2A7[i][1] / P2A7[i][0] : null;
+      var o = p3obj(i);
+      var c3 = o.clicks ? o.spend / o.clicks : null;
+      if (c2 && c2 > max) max = c2;
+      if (c3 && c3 > max) max = c3;
+      return { a: a, c2: c2, c3: c3 };
+    });
+    var html = "";
+    rows.forEach(function (r) {
+      var d = r.c2 && r.c3 ? (r.c3 - r.c2) / r.c2 * 100 : null;
+      var dTxt = d == null ? "" : (d < 0 ? "▼" + Math.abs(Math.round(d)) + "%" : "▲" + Math.round(d) + "%");
+      var dCol = d == null ? "var(--muted)" : d < 0 ? "var(--good)" : "var(--bad)";
+      html += '<div class="c23">' +
+        '<div class="aname">' + r.a + "</div>" +
+        '<div class="pl">2차</div><div class="track"><div class="bar" style="width:' + (r.c2 == null ? 0 : (r.c2 / max * 100).toFixed(1)) + '%;background:var(--p1bar)"></div></div><div class="v">' + won(r.c2) + "</div>" +
+        '<div class="dchip" style="color:' + dCol + '">' + dTxt + "</div>" +
+        '<div class="pl">3차</div><div class="track"><div class="bar" style="width:' + (r.c3 == null ? 0 : (r.c3 / max * 100).toFixed(1)) + '%;background:var(--accent)"></div></div><div class="v">' + won(r.c3) + "</div>" +
+        "</div>";
+    });
+    document.getElementById("cmp23").innerHTML = html;
+  }
+
+  function renderTable3() {
+    var minCpc = Infinity, minIdx = -1;
+    AGES3.forEach(function (a, i) {
+      var o = p3obj(i);
+      if (o.clicks && o.spend / o.clicks < minCpc) { minCpc = o.spend / o.clicks; minIdx = i; }
+    });
+    var html = "<table style=\"min-width:540px\"><thead><tr><th>연령</th><th>클릭</th><th>CPC</th><th>지출</th><th>노출</th><th>도달</th><th>CTR</th><th>CPM</th></tr></thead><tbody>";
+    AGES3.forEach(function (a, i) {
+      var o = p3obj(i);
+      html += "<tr" + (i === minIdx ? ' class="best"' : "") + "><td>" + a + "</td><td>" + num(o.clicks) + "</td><td>" + won(o.clicks ? o.spend / o.clicks : null) + "</td><td>" + won(o.spend) + "</td><td>" + num(o.imp) + "</td><td>" + num(o.reach) + "</td><td>" + (o.clicks / o.imp * 100).toFixed(1) + "%</td><td>" + won(o.spend / o.imp * 1000) + "</td></tr>";
+    });
+    var t = p3total();
+    html += "<tr><td>합계</td><td>" + num(t.clicks) + "</td><td>" + won(t.spend / t.clicks) + "</td><td>" + won(t.spend) + "</td><td>" + num(t.imp) + "</td><td>" + num(t.reach) + "</td><td>" + (t.clicks / t.imp * 100).toFixed(1) + "%</td><td>" + won(t.spend / t.imp * 1000) + "</td></tr>";
+    document.getElementById("tableWrap3").innerHTML = html + "</tbody></table>";
+  }
+
+  // ---------- View 4 (비교) ----------
+  function renderView4() {
     var t1 = { lpv: 0, spend: 0, imp: 0 };
     CAMPS.forEach(function (c) { var o = totals(c, -1); t1.lpv += o.lpv; t1.spend += o.spend; t1.imp += o.imp; });
     var t2 = { clicks: 0, spend: 0, imp: 0 };
     CAMPS.forEach(function (c) { var o = totals2(c, -1); t2.clicks += o.clicks; t2.spend += o.spend; t2.imp += o.imp; });
-    document.getElementById("kpis3").innerHTML =
-      kpiHtml("총 지출 (1+2차)", won(t1.spend + t2.spend), "1차 " + won(t1.spend) + " · 2차 " + won(t2.spend)) +
-      kpiHtml("총 노출", num(t1.imp + t2.imp) + "회", "1차 " + num(t1.imp) + " · 2차 " + num(t2.imp)) +
-      kpiHtml("1차 랜딩 조회", num(t1.lpv) + "건", "평균 CPA " + won(t1.spend / t1.lpv)) +
-      kpiHtml("2차 링크 클릭", num(t2.clicks) + "회", "평균 CPC " + won(t2.spend / t2.clicks));
+    var t3 = p3total();
+    document.getElementById("kpis4").innerHTML =
+      kpiHtml("총 지출 (1~3차)", won(t1.spend + t2.spend + t3.spend), won(t1.spend) + " · " + won(t2.spend) + " · " + won(t3.spend)) +
+      kpiHtml("총 노출", num(t1.imp + t2.imp + t3.imp) + "회", num(t1.imp) + " · " + num(t2.imp) + " · " + num(t3.imp)) +
+      kpiHtml("2차 CPC", won(t2.spend / t2.clicks), "15소재 개별 · 클릭 " + num(t2.clicks) + "회") +
+      kpiHtml("3차 CPC", won(t3.spend / t3.clicks), "Top 4 통합 · 클릭 " + num(t3.clicks) + "회");
 
     var r1 = CAMPS.slice().sort(function (a, b) { return (cpa(totals(a, -1)) || 1e9) - (cpa(totals(b, -1)) || 1e9); });
     var r2 = CAMPS.slice().sort(function (a, b) { return (cpc(totals2(a, -1)) || 1e9) - (cpc(totals2(b, -1)) || 1e9); });
@@ -742,7 +947,8 @@
         "<div>" +
           '<div class="c-name">' + c + " " + NAMES[c] +
             ' <span class="rk">1차 ' + rank1[c] + "위</span><span class=\"rk\">2차 " + rank2[c] + "위</span>" +
-            '<span class="delta ' + deltaCls + '">' + deltaTxt + "</span></div>" +
+            '<span class="delta ' + deltaCls + '">' + deltaTxt + "</span>" +
+            (T4.indexOf(c) >= 0 ? '<span class="rk t4b">3차 투입</span>' : "") + "</div>" +
           '<div class="cbar"><span class="lbl">1차 CPA</span><div class="track"><div class="bar" style="width:' + (a / maxCpa * 100).toFixed(1) + '%;background:var(--p1bar)"></div></div><span class="v">' + won(a) + "</span></div>" +
           '<div class="cbar"><span class="lbl">2차 CPC</span><div class="track"><div class="bar" style="width:' + (b / maxCpc * 100).toFixed(1) + '%;background:var(--accent)"></div></div><span class="v">' + won(b) + "</span></div>" +
           '<div class="cpm">CPM ' + won(cpm1) + " → " + won(cpm2) + "</div>" +
@@ -778,6 +984,7 @@
 
   function renderView1() { renderKpis1(); renderControls1(); renderRanking1(); renderDetail(); }
   function renderView2() { renderKpis2(); renderControls2(); renderRanking2(); }
+  function renderView3() { renderKpis3(); renderT4(); renderAgeRows3(); renderCmp23(); renderTable3(); }
 
   renderView1();
   renderHeatmap1();
@@ -786,6 +993,7 @@
   renderHeatmap2();
   renderTable2();
   renderView3();
+  renderView4();
 })();
 </script>
 </body>
